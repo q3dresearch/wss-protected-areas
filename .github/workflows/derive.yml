@@ -11,7 +11,7 @@ name: derive
 
 on:
   schedule:
-    - cron: "20 0 * * 2" # Tuesday, after capture + health
+    - cron: "20 2 5 * *" # Tuesday, after capture + health
   workflow_dispatch:
   pull_request:
     paths:
@@ -29,7 +29,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  ENGINE_SPEC: "wss[object] @ git+https://github.com/${{ github.repository_owner }}/wss-engine.git@v0.6.45"
+  ENGINE_SPEC: "wss[object] @ git+https://github.com/${{ github.repository_owner }}/wss-engine.git@v0.6.46"
 
 jobs:
   derive:
