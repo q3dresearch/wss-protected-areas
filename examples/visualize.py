@@ -16,6 +16,7 @@
                             even while they are present
   one-frame-japan.svg       what a single release claims about a century
   two-frames-georgia.svg    what a second release does to that claim
+  the-same-boundary.svg     both frames of one park, drawn on top of each other
 
 Reads the derived table, never the raw archive. Stdlib only, deterministic
 output: the same observations always produce the same bytes.
@@ -550,6 +551,82 @@ def chart_two_frames_georgia():
     save(p, "two-frames-georgia.svg", w, h)
 
 
+# Georgia-wide, measured across the two verified frames.
+GEO_VERTICES = {"before": 265145, "after": 70295, "sites": 94,
+                "same_bbox": 83, "fewer_points": 92}
+
+
+def chart_same_boundary():
+    """Both frames of Kazbegi, overlaid. The decisive picture."""
+    import json as _json
+    path = REPO / "examples" / "kazbegi-frames.json"
+    if not path.is_file():
+        return
+    frames = _json.loads(path.read_text())
+    w, h = 940, 720
+    a, b = frames["Jul2024"], frames["Sep2026"]
+    pts_a = sum(len(r) for r in a["rings"])
+    pts_b = sum(len(r) for r in b["rings"])
+    p = head(w, h, "The same park, in both releases, drawn on top of each other",
+             "Kazbegi National Park. Its reported area fell 46% between these "
+             "two frames; this is what actually changed.",
+             ["July 2024 in orange underneath, September 2026 in blue on top. "
+              "If the boundary had moved, orange would show at the edges.",
+              "It does not. What changed is the number of vertices describing "
+              "the same outline."])
+    xs = [x for r in a["rings"] + b["rings"] for x, _ in r]
+    ys = [y for r in a["rings"] + b["rings"] for _, y in r]
+    x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+    k = math.cos(math.radians((y0 + y1) / 2))
+    L_, T_, W_, H_ = 300, 175, 580, 330
+    sc = min(W_ / ((x1 - x0) * k), H_ / (y1 - y0))
+    def pt(lon, lat):
+        return (L_ + (lon - x0) * k * sc, T_ + H_ - (lat - y0) * sc)
+    for rings, colour, op, wd in ((a["rings"], ACCENT, 0.55, 1.6),
+                                  (b["rings"], HUE, 0.0, 0.9)):
+        for r in rings:
+            pts = " ".join(f"{pt(lo,la)[0]:.1f},{pt(lo,la)[1]:.1f}" for lo, la in r)
+            p.append(f'<polygon points="{pts}" fill="{colour}" fill-opacity="{op}" '
+                     f'stroke="{colour}" stroke-width="{wd}"/>')
+    rows = [("vertices describing it", f"{pts_a:,}", f"{pts_b:,}", True),
+            ("rings", f"{len(a['rings'])}", f"{len(b['rings'])}", False),
+            ("GIS_AREA, km\u00b2 (measured)", f"{float(a['attrs']['GIS_AREA']):,.1f}",
+             f"{float(b['attrs']['GIS_AREA']):,.1f}", False),
+            ("REP_AREA, km\u00b2 (reported)", f"{float(a['attrs']['REP_AREA']):,.1f}",
+             f"{float(b['attrs']['REP_AREA']):,.1f}", True)]
+    y = T_ + 10
+    p.append(T(56, y - 14, "Jul 2024", 11, ACCENT, weight="600"))
+    p.append(T(170, y - 14, "Sep 2026", 11, HUE, weight="600"))
+    for label, va, vb, hot in rows:
+        p.append(T(56, y + 12, va, 13, ACCENT, weight="600" if hot else "normal"))
+        p.append(T(170, y + 12, vb, 13, HUE, weight="600" if hot else "normal"))
+        p.append(T(56, y + 28, label, 10.5, MUTED))
+        y += 50
+    p.append(T(56, y + 4, "bounding box", 10.5, MUTED))
+    p.append(T(56, y + 22, "identical to 5 decimals", 12, INK, weight="600"))
+
+    g = GEO_VERTICES
+    yy = T_ + H_ + 56
+    p.append(L(56, yy, w - 56, yy, GRID)); yy += 28
+    p.append(T(56, yy, "And it is not one park.", 15, INK, weight="600"))
+    p.append(T(56, yy + 24,
+               f"Across all {g['sites']} Georgian sites in both frames, the polygons "
+               f"went from {g['before']:,} vertices to {g['after']:,} — a drop of "
+               f"{(g['before']-g['after'])/g['before']:.0%} — while", 12, INK2))
+    p.append(T(56, yy + 42,
+               f"{g['same_bbox']} of {g['sites']} ({g['same_bbox']/g['sites']:.0%}) "
+               f"kept an identical bounding box and {g['fewer_points']} lost points. "
+               f"The register was re-drawn at lower resolution and its", 12, INK2))
+    p.append(T(56, yy + 60,
+               "reported areas corrected to match. No protection was gained or lost.",
+               12, INK2))
+    p.append(T(56, yy + 88,
+               "A single release shows none of this, and a naive comparison of "
+               "REP_AREA alone would report it as mass downsizing.",
+               12, INK, weight="600"))
+    save(p, "the-same-boundary.svg", w, h)
+
+
 def chart_one_row_away(countries, sites):
     """The honest fragility measure: how much of a country is one site."""
     w, h = 940, 700
@@ -649,6 +726,7 @@ def main():
     chart_cannot_be_weighed(sites, countries)
     chart_one_frame_japan(sites)
     chart_two_frames_georgia()
+    chart_same_boundary()
 
 
 if __name__ == "__main__":

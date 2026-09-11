@@ -141,6 +141,26 @@ national parks. It didn't. The boundaries never moved; the numbers did. That is
 **P7** — how much of a trend is new sites versus the same sites being
 remeasured — and it is answerable only across frames.
 
+And the geometry settles it outright:
+
+<p align="center">
+  <img src="examples/charts/the-same-boundary.svg" width="900" alt="Kazbegi National Park drawn from both releases overlaid: the September 2026 outline traces the July 2024 fill exactly. Vertices fell from 7,752 to 3,302 and reported area from 1,446.2 to 782.0 km², while measured area moved 783.1 to 782.6 and the bounding box is identical to five decimals.">
+</p>
+
+Both frames of Kazbegi, on top of each other. If the boundary had moved, the
+July 2024 fill would show at the edges. It does not — the bounding box is
+**identical to five decimal places**. What changed is the vertex count:
+**7,752 points became 3,302**.
+
+Across all 94 Georgian sites in both frames the polygons went from **265,145
+vertices to 70,295, a drop of 73%**, while **83 of 94 (88%) kept an identical
+bounding box** and 92 lost points. The register was re-drawn at lower resolution
+and its reported areas corrected to match. No protection was gained or lost.
+
+**Japan cannot have this chart**, and that is the point: no second frame of
+Japanese geometry exists anywhere, so there is no way to tell whether the same
+thing happened there. The only fix is to start capturing now.
+
 The per-country geometry used for that comparison is a **control**, read once.
 This repository captures the global attribute release and nothing else; the
 screening record is in `webprobes/catalogue.csv`.
