@@ -6,7 +6,7 @@ name: health
 
 on:
   schedule:
-    - cron: "40 3 5 * *" # Monday, after capture
+    - cron: "40 3 5 1,4,7,10 *" # after the quarterly capture
   workflow_dispatch:
 
 permissions:

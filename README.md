@@ -6,7 +6,7 @@
 
 <div align="center">
 
-  <a href="https://github.com/q3dresearch/wss-protected-areas/actions/workflows/capture-monthly.yml"><img alt="capture status" src="https://img.shields.io/github/actions/workflow/status/q3dresearch/wss-protected-areas/capture-monthly.yml?label=capture&style=flat-square"></a>
+  <a href="https://github.com/q3dresearch/wss-protected-areas/actions/workflows/capture-quarterly.yml"><img alt="capture status" src="https://img.shields.io/github/actions/workflow/status/q3dresearch/wss-protected-areas/capture-quarterly.yml?label=capture&style=flat-square"></a>
   <a href="https://github.com/q3dresearch/wss-protected-areas/commits"><img alt="last capture" src="https://img.shields.io/github/last-commit/q3dresearch/wss-protected-areas?label=last%20capture&style=flat-square"></a>
   <a href="https://github.com/q3dresearch/wss-protected-areas/blob/main/LICENSE"><img alt="licence" src="https://img.shields.io/github/license/q3dresearch/wss-protected-areas?style=flat-square"></a>
   <a href="https://github.com/q3dresearch/wss-protected-areas"><img alt="stars" src="https://img.shields.io/github/stars/q3dresearch/wss-protected-areas?style=social"></a>
@@ -206,7 +206,7 @@ it, is in [docs/pilot-study.md](docs/pilot-study.md).
 
 | source | what it is | cadence | first capture |
 | --- | --- | --- | --- |
-| `wdpa.protected.areas` | the monthly WDPA public CSV release — 314,766 rows collapsing to 312,943 sites, 75,626,603 km², across 196 territories plus 25 joint designations and the high seas | monthly | 2026-09 |
+| `wdpa.protected.areas` | the WDPA public CSV release, captured quarterly — 314,766 rows collapsing to 312,943 sites, 75,626,603 km², across 196 territories plus 25 joint designations and the high seas | quarterly | 2026-09 |
 
 ## The data you get
 
@@ -266,7 +266,7 @@ export WSS_CONTACT="https://github.com/q3dresearch/wss-protected-areas"
 
 wss validate
 wss doctor wdpa.protected.areas
-wss capture --cadence monthly
+wss capture --cadence quarterly
 wss derive --parsers parsers.wdpa_site_v1
 python examples/visualize.py
 ```
@@ -284,13 +284,15 @@ source declares `storage: object`.
    **`R2_BUCKET_NAME`** and optionally **`WSS_OBJECT_PREFIX`**. Without them the
    capture job runs and writes nothing, which looks like success until the
    derive finds no raw.
-4. Run `capture-monthly` once by hand (Actions → capture-monthly → Run
+4. Run `capture-quarterly` once by hand (Actions → capture-quarterly → Run
    workflow), confirm the bot's data commit lands, then let the cron take over.
 
 ## Licences
 
-Two separate files, on purpose: code is MIT ([LICENSE](LICENSE)); the derived
-observations are CC-BY-4.0 ([LICENSE-DATA](LICENSE-DATA)), citation in
+Code is MIT ([LICENSE](LICENSE)). **The derived observations are NOT CC-BY and
+cannot be** — UNEP-WCMC's terms forbid sub-licensing WDPA data, including
+within derivative works, and forbid publishing it in downloadable form. Read
+[LICENSE-DATA](LICENSE-DATA) before reusing anything in `derived/`. Citation in
 [CITATION.cff](CITATION.cff).
 
 **The WDPA itself is not redistributed here.** Protected Planet's terms allow

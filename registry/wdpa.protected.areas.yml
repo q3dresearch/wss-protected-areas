@@ -28,12 +28,21 @@
 # 67. Sweden holds 32,959 sites totalling 264,641 km2; the Cook Islands holds 3
 # totalling 2,278,077. Counting sites would rank those backwards.
 #
+# QUARTERLY, NOT MONTHLY, and the evidence is in docs/pilot-study.md. Georgia
+# is the only country with two verified frames (Jul 2024 and Sep 2026) and
+# across them the 94 sites present in both moved -0% in measured area, with
+# identical bounding boxes on 88% and 99.6% of vertices unchanged. One site
+# left, 4.4 km2. Of 77 arrivals exactly ONE was designated in the window. The
+# finding that mattered needed two frames 26 months apart; monthly capture
+# would have produced 26 frames to reach it. Cadence follows the decision
+# cycle, not the file's availability.
+#
 # THE URL NAMES ITS OWN MONTH, so it is a template rather than a literal.
 # {month_end:%b%Y} expands to Sep2026, and lookback 1 falls back to the
 # previous month for the hours on the 1st before the new release is written.
 source_id: wdpa.protected.areas
 status: active
-cadence: monthly
+cadence: quarterly
 schema_id: wdpa-site.v1
 
 publisher: UNEP-WCMC and IUCN (Protected Planet / World Database on Protected Areas)
@@ -55,7 +64,7 @@ notes: >-
 
 endpoints:
   - url: "https://d1gam3xoknrgr2.cloudfront.net/current/WDPA_{month_end:%b%Y}_Public_csv.zip"
-    lookback: 1
+    lookback: 3
     delay_seconds: 2
     timeout_seconds: 300
 

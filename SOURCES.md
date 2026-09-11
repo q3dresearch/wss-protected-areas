@@ -10,13 +10,13 @@ timestamp and a SHA-256 of exactly what came back.
 
 | source | publisher | cadence | status | last captured |
 | --- | --- | --- | --- | --- |
-| `wdpa.protected.areas` | UNEP-WCMC and IUCN (Protected Planet / World Database on Protected Areas) | monthly | active | 2026-09-11 |
+| `wdpa.protected.areas` | UNEP-WCMC and IUCN (Protected Planet / World Database on Protected Areas) | quarterly | active | 2026-09-11 |
 
 ## Each source in full
 
 ### `wdpa.protected.areas`
 
-**UNEP-WCMC and IUCN (Protected Planet / World Database on Protected Areas)** (first party) · monthly · active
+**UNEP-WCMC and IUCN (Protected Planet / World Database on Protected Areas)** (first party) · quarterly · active
 
 23.8 MB per capture, of which about 12 MB is the same five-language PDF manual set every month. Object storage rather than git purely on size -- 286 MB a year would make the repository unclonable within three years, and there is no smaller endpoint: the Protected Planet API needs a key and would cost 312,943 requests to cover the same ground. The server supports revalidation and answers 304, so an unchanged month is cheap. No personal data -- MANG_AUTH names authorities and GOV_TYPE reaches "Individual landowners" (9,528 sites) but no individual is named.
 
