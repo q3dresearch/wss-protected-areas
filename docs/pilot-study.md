@@ -1,0 +1,110 @@
+# Pilot study: does one capture justify publishing this?
+
+Run 2026-09-11 against the first capture, following step 10 of the wss research
+sequence — *interrogate the finished charts before believing them*. The five
+questions are asked of the whole set, not of one chart.
+
+The capture: `WDPA_Sep2026_Public_csv.zip`, 23,820,193 bytes, to R2. Derived to
+1,281,605 observations over 312,943 sites.
+
+## 1. Is any chart lying?
+
+**35 of 35 published headline claims were recomputed from the derived rows by
+code that does not import `visualize.py`, and all 35 reproduce exactly.**
+
+That covers the Sweden/Cook Islands pair and both ratios, the IUCN VI figures
+and the claim that VI is the largest area class, all nine realm figures,
+Denmark's 91% and the Cook Islands' 100%, Nigeria's 91% and that it is the
+worst territory over 500 sites, and every feed-level count.
+
+Separately: the archived bytes were read back out of R2, unzipped, and the
+whole analysis re-run from them. The charts regenerate byte-identically.
+
+## 2. Did you merge categories that are not one thing?
+
+**Yes, and this question caught it.** The rule is to check a merge against a
+*second* column rather than the one merged on, and doing that broke the
+original classification outright.
+
+The first parser derived a marine / terrestrial binary from `REP_M_AREA > 0`.
+WDPA publishes a `REALM` column naming the answer, and it has **three** values:
+
+| | sites | area | mean site |
+| --- | --- | --- | --- |
+| Marine | 6,455 | 43,437,677 km² | 6,729 km² |
+| Coastal | 10,410 | 2,344,549 km² | 225 km² |
+| Terrestrial | 296,078 | 29,844,377 km² | 101 km² |
+
+The binary disagreed with WDPA's own label on **9,539 sites** — 2,492 that WDPA
+calls Marine report no marine area, and 1,590 it calls Terrestrial report some
+— and it collapsed `Coastal`, which at 225 km² belongs with neither side.
+
+The published claim was *"marine is 3.5% of sites and 47.0% of area"*. The
+source's own answer is **2.1% of sites and 57.4% of area**, a ratio of 67 rather
+than 25. The error understated the finding, which is the direction that gets
+published unchallenged.
+
+A second merge was checked and stands: the transboundary correction. 25 of the
+222 `PRNT_ISO3` values are joint designations, they are excluded from every
+per-territory measure, and `is_territory` travels on each one so a reader cannot
+repeat the mistake.
+
+## 3. Does any chart raise more than it answers?
+
+**`cannot-be-weighed.svg` did, and now carries its own answer.** Showing that
+Nigeria reports no area for 91% of its sites invites *"then how much of the
+75.6M km² total is missing?"* The feed carries `sites_without_area` (23,656) and
+`sites_without_year` (34,459) so the reader can bound it without leaving the
+repository.
+
+**`the-only-release.svg` deliberately raises one it cannot answer**: what was in
+the eight missing months. That is the repository's reason to exist, and the
+caption says so rather than implying the archive already knows.
+
+## 4. What must be read together?
+
+- **`count-or-area.svg` and `the-weight-of-a-realm.svg` are one argument.** The
+  first shows that territories rank differently by count and by area; the second
+  shows why (2.1% of sites hold 57.4% of the planet). Either alone reads as a
+  curiosity.
+- **`one-row-away.svg` is invalid without the transboundary correction**, which
+  is stated in its own section of the README and in the questions doc. Without
+  it the chart says 22 countries hold one protected area each, which is false.
+- **`cannot-be-weighed.svg` bounds every other chart.** 23,656 sites cannot be
+  weighed when they leave, and no area-weighted finding here covers them.
+
+## 5. What policy or prediction follows, and what does not?
+
+**Follows.** Any 30×30 or GBF Target 3 figure must be weighted by area and split
+by realm, because 2.1% of the entries carry 57.4% of the total and one marine
+degazettement outweighs 67 terrestrial ones. A country whose `top_site_share` is
+near 1.0 — Denmark 91%, Cook Islands and Niue 100% — has a single-row exposure
+that its site count completely hides, and that is a monitorable risk today.
+
+**Does not follow.** Nothing here says protected areas are being lost. This is
+one release. The repository cannot yet report a single departure, a rate, or a
+trend, and any chart that implied one would be lying. The three founding
+questions all read *needs the archive*, and the honest claim is that **the
+September 2026 release is now preserved and the October one will produce the
+first delta.**
+
+## Against the rest of the fleet
+
+| | this repo | published fleet |
+| --- | --- | --- |
+| sources | 1 | 1–48 (`wss-forest-harvest` 2, `wss-mining-pipeline` 2) |
+| charts | 6 | 3–14 |
+| questions with honest statuses | 12 | 0–15 |
+| questions still `source not yet added` | 2 | 0–2 |
+
+One source is the fleet's floor, not below it. Six charts clears it.
+
+## Verdict
+
+**Publishable.** The pilot found one substantive error, it was in the direction
+that understates rather than overstates, it was caught by the sequence rather
+than by luck, and the corrected figure is stronger than the wrong one. Every
+remaining headline reproduces from the archived bytes.
+
+The thing that would change this verdict is a second release contradicting the
+first — which is exactly what next month's capture tests.

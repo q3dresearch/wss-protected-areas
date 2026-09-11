@@ -21,10 +21,12 @@
 #
 # IT CARRIES ITS OWN DENOMINATOR, AND THE COUNT MISLEADS. REP_AREA is on every
 # row. 314,766 rows collapse to 312,943 sites -- SITE_PID splits a site into
-# parts and the SITE is what gets degazetted. Marine sites are 10,822 of those
-# (3.5%) but 35,573,290 of 75,626,603 km2 (47.0%). Sweden holds 32,959 sites
-# totalling 264,641 km2; the Cook Islands holds 3 totalling 2,278,077 km2.
-# Counting sites would rank those backwards.
+# parts and the SITE is what gets degazetted. REALM splits them three ways:
+# Marine 6,455 sites (2.1%) holding 43,437,677 km2 (57.4%), Coastal 10,410
+# (3.3%) holding 2,344,549, Terrestrial 296,078 (94.6%) holding 29,844,377.
+# The average marine site is 6,729 km2 against a terrestrial 101 -- a factor of
+# 67. Sweden holds 32,959 sites totalling 264,641 km2; the Cook Islands holds 3
+# totalling 2,278,077. Counting sites would rank those backwards.
 #
 # THE URL NAMES ITS OWN MONTH, so it is a template rather than a literal.
 # {month_end:%b%Y} expands to Sep2026, and lookback 1 falls back to the

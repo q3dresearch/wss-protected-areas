@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="560" viewBox="0 0 940 560">
+<rect x="0.0" y="0.0" width="940.0" height="560.0" fill="#fcfcfb" rx="0"/>
+<text x="56.0" y="48.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="20" fill="#0b0b0b" text-anchor="start" font-weight="600">2.1% of protected areas hold 57.4% of the protected planet</text>
+<text x="56.0" y="74.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#52514e" text-anchor="start" font-weight="normal">WDPA labels every site Marine, Coastal or Terrestrial. Counting sites and measuring them give opposite answers.</text>
+<text x="56.0" y="96.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#898781" text-anchor="start" font-weight="normal">Both bars are the same 312,943 sites and the same 75,626,603 km2, split by the source's own REALM column.</text>
+<text x="56.0" y="112.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#898781" text-anchor="start" font-weight="normal">Coastal is a real third category and not a rounding of the other two: at 225 km2 a coastal site is nearer a terrestrial one.</text>
+<text x="196.0" y="216.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="600">by site count</text>
+<rect x="210.0" y="190.0" width="11.2" height="40.0" fill="#2a78d6" rx="4"/>
+<text x="215.6" y="182.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#2a78d6" text-anchor="middle" font-weight="600">2.1%</text>
+<line x1="215.6" y1="186.0" x2="215.6" y2="190.0" stroke="#2a78d6" stroke-width="1"/>
+<rect x="223.2" y="190.0" width="19.3" height="40.0" fill="#eb6834" rx="4"/>
+<text x="232.8" y="166.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#eb6834" text-anchor="middle" font-weight="600">3.3%</text>
+<line x1="232.8" y1="170.0" x2="232.8" y2="190.0" stroke="#eb6834" stroke-width="1"/>
+<rect x="244.5" y="190.0" width="603.5" height="40.0" fill="#9ec5f4" rx="4"/>
+<text x="546.2" y="215.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#fcfcfb" text-anchor="middle" font-weight="600">94.6%</text>
+<text x="210.0" y="250.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="start" font-weight="normal">Marine 6,455   ·   Coastal 10,410   ·   Terrestrial 296,078</text>
+<text x="196.0" y="326.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="600">by reported area</text>
+<rect x="210.0" y="300.0" width="365.6" height="40.0" fill="#2a78d6" rx="4"/>
+<text x="392.8" y="325.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#fcfcfb" text-anchor="middle" font-weight="600">57.4%</text>
+<rect x="577.6" y="300.0" width="17.8" height="40.0" fill="#eb6834" rx="4"/>
+<text x="586.5" y="276.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#eb6834" text-anchor="middle" font-weight="600">3.1%</text>
+<line x1="586.5" y1="280.0" x2="586.5" y2="300.0" stroke="#eb6834" stroke-width="1"/>
+<rect x="597.4" y="300.0" width="250.6" height="40.0" fill="#9ec5f4" rx="4"/>
+<text x="722.7" y="325.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#fcfcfb" text-anchor="middle" font-weight="600">39.5%</text>
+<text x="210.0" y="360.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="start" font-weight="normal">Marine 43,437,677 km²   ·   Coastal 2,344,549 km²   ·   Terrestrial 29,844,377 km²</text>
+<rect x="210.0" y="450.0" width="14.0" height="14.0" fill="#2a78d6" rx="3"/>
+<text x="232.0" y="462.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="600">Marine</text>
+<text x="232.0" y="478.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="start" font-weight="normal">mean 6,729 km²</text>
+<rect x="440.0" y="450.0" width="14.0" height="14.0" fill="#eb6834" rx="3"/>
+<text x="462.0" y="462.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="600">Coastal</text>
+<text x="462.0" y="478.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="start" font-weight="normal">mean 225 km²</text>
+<rect x="670.0" y="450.0" width="14.0" height="14.0" fill="#9ec5f4" rx="3"/>
+<text x="692.0" y="462.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="600">Terrestrial</text>
+<text x="692.0" y="478.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="start" font-weight="normal">mean 101 km²</text>
+<text x="56.0" y="524.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">The average marine site is 67× the average terrestrial one.</text>
+<text x="56.0" y="546.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">A departure counted as one site in 312,943 is not a measurement. Which realm it was in decides what was lost.</text>
+</svg>

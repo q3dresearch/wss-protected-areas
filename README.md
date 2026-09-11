@@ -73,9 +73,19 @@ The same inversion runs through the management categories:
 
 Category VI — sustainable use, the weakest protection class — is **10,072
 sites holding 19,364,825 km²**, the largest area class in the database from the
-third-smallest count. Marine sites are **10,822 of 312,943 (3.5%) and 47.0% of the area**: the
-average marine site is 3,287 km² against a terrestrial 133 km², so one marine
-departure weighs twenty-five terrestrial ones.
+third-smallest count.
+
+And the realm split is sharper still. WDPA labels every site `Marine`,
+`Coastal` or `Terrestrial`:
+
+<p align="center">
+  <img src="examples/charts/the-weight-of-a-realm.svg" width="900" alt="Marine sites are 2.1% of the 312,943 protected areas and 57.4% of the 75.6 million square kilometres, averaging 6,729 km² each; Coastal is 3.3% of sites and 3.1% of area at 225 km²; Terrestrial is 94.6% of sites and 39.5% of area at 101 km².">
+</p>
+
+**2.1% of the sites hold 57.4% of the planet's protected area**, and one marine
+departure weighs **67** terrestrial ones. `Coastal` is a real third category
+rather than a rounding of the other two: at 225 km² a coastal site is nearer a
+terrestrial one than a marine one.
 
 ## Most of a country's protection can be one row
 
@@ -120,6 +130,8 @@ rename is dated to the month instead of discovered as an empty capture.
 The questions this archive exists to answer, with honest statuses and the
 people who act on them, are in
 [docs/research-questions.md](docs/research-questions.md).
+The publication decision, and what interrogating the charts found before
+it, is in [docs/pilot-study.md](docs/pilot-study.md).
 
 ## Coverage
 

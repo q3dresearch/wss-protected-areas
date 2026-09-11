@@ -54,10 +54,22 @@ A departure counted as one site in 312,943 is meaningless. `REP_AREA` turns it
 into a magnitude, and the two disagree so violently that using the count is a
 mistake rather than an approximation:
 
-| | sites | share of sites | km² | share of area |
-| --- | --- | --- | --- | --- |
-| **marine** | 10,822 | **3.5%** | 35,573,290 | **47.0%** |
-| **terrestrial** | 302,121 | 96.5% | 40,053,313 | 53.0% |
+| `REALM` | sites | share of sites | km² | share of area | mean site |
+| --- | --- | --- | --- | --- | --- |
+| **Marine** | 6,455 | **2.1%** | 43,437,677 | **57.4%** | **6,729 km²** |
+| Coastal | 10,410 | 3.3% | 2,344,549 | 3.1% | 225 km² |
+| Terrestrial | 296,078 | 94.6% | 29,844,377 | 39.5% | 101 km² |
+
+**2.1% of the sites hold 57.4% of the planet's protected area**, and the
+average marine site is **67×** the average terrestrial one.
+
+`Coastal` is a real third category and not a rounding of the other two: at
+225 km² a coastal site is nearer a terrestrial one than a marine one. An
+earlier version of this parser derived a marine/terrestrial binary from
+`REP_M_AREA > 0` instead of reading `REALM`, and it disagreed with WDPA's own
+label on **9,539 sites** — 2,492 sites WDPA calls Marine report no marine area,
+and 1,590 it calls Terrestrial report some. The binary was wrong twice over and
+understated the finding. See *What the pilot capture changed*, below.
 
 The same split by country. Sweden holds **32,959 sites totalling 264,641 km²**;
 the Cook Islands holds **3 sites totalling 2,278,077 km²**. By count Sweden
@@ -121,11 +133,12 @@ registry entry.
 | P2 | Does a site shrink before it disappears? | ~12 months | needs the archive. `REP_AREA` travels on every row. If downsizing precedes degazettement the loss is predictable a year out; if sites vanish at full size it is not. Nobody can currently tell, because nobody holds two releases |
 | P3 | Was a departure a real degazettement or a data correction? | a source | **`source not yet added`** — PADDDtracker is the other half, and it is a larder: its download button points at `zenodo.org/records/4974336`, DOI'd and versioned. Fetch once as a join control, do not listen to it. A site that vanishes AND appears in PADDD is a policy event; one that vanishes alone is probably a merge or a re-survey |
 | P4 | Which countries lose sites against their share of the standing 314,766? | ~12 months | needs the archive, and the denominator is already in hand. The share must be computed on area as well as count, because the two orderings are different databases (see above) |
-| P5 | Do marine and terrestrial sites leave at different rates? | ~12 months | needs the archive. Marine is 3.5% of sites and 47.0% of area: the average marine site is 3,287 km² against a terrestrial 133 km², so one marine departure weighs 25 terrestrial ones. If the rates also differ, the headline coverage number is far more volatile than it looks |
+| P5 | Do the three realms leave at different rates? | ~12 months | needs the archive. Marine is 2.1% of sites and 57.4% of area, so **one marine departure weighs 67 terrestrial ones**. Coastal sits between them at 225 km² and is the category most likely to be reclassified rather than removed — watching all three separately is the only way to tell a reclassification from a loss |
 | P6 | Does `STATUS` ever move backwards — Designated to Proposed? | ~6 months | needs the archive. This is the one degradation the vocabulary CAN express, and because only one release exists nobody has ever counted it |
 | P7 | How much of the 30×30 trend is new sites versus the same sites being remeasured? | ~12 months | needs the archive, and this is the question with a policy deadline attached. `REP_AREA` vs `GIS_AREA` already agree to a median relative gap of **0.0%** across 287,832 comparable rows, so a moving `REP_AREA` is a real change rather than a measurement artefact |
 | P8 | Are privately governed sites more fragile? | ~12 months | needs the archive. `GOV_TYPE` names **9,528 sites governed by individual landowners** and 22,806 by non-profits, against 185,986 federal. Private protection is the part that can lapse with an owner's death or a sale, and it is 3% of rows |
 | P11 | Does a territory's keystone site ever move? | ~12 months | needs the archive, and it is the sharpest alarm available. `top_site_share` is emitted per territory from the first capture. If Denmark's 91% or the Cook Islands' 100% changes at all, one row moved and a national protected estate moved with it |
+| P12 | Does a site change REALM? | ~12 months | needs the archive. A site moving Coastal→Terrestrial is a reclassification, not a loss, and from a single release the two are indistinguishable. This question exists because the first parser could not have asked it — it had collapsed the column |
 | P9 | How stable is the schema itself? | **partly answered, and it already broke.** | The columns are `SITE_ID` / `SITE_PID` in this release. The documented WDPA identifiers for years were `WDPAID` / `WDPA_PID`. Any script written against the old names silently reads nothing. One capture cannot date the change; two consecutive captures date any future one to the month |
 | P10 | How many sites carry no usable date or area? | **answered, and it bounds everything above.** | `STATUS_YR` is `0` on **34,459 sites (11.0%)** and `REP_AREA` is `0` on **23,656 (7.6%)**. Nigeria reports no area for **91% of its 1,005 sites**, Albania 89%, Italy 57% of 3,962. Those rows can be observed leaving but not weighed or aged |
 

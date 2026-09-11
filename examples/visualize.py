@@ -9,6 +9,7 @@
                             sites and measuring area produce different worlds
   where-the-area-is.svg     IUCN category by count and by km². The smallest
                             categories hold the most planet
+  the-weight-of-a-realm.svg 2.1% of the sites hold 57.4% of the planet
   one-row-away.svg          the countries whose protected estate is mostly a
                             single site
   cannot-be-weighed.svg     the countries whose rows cannot be aged or measured
@@ -93,6 +94,7 @@ def load():
     sites = collections.defaultdict(dict)
     countries = collections.defaultdict(dict)
     iucn = collections.defaultdict(dict)
+    realms = collections.defaultdict(dict)
     feed = collections.defaultdict(dict)
     for part in sorted((REPO / "derived" / "observations").glob("*.csv*")):
         with _open(part) as fh:
@@ -104,9 +106,11 @@ def load():
                     countries[eid[8:]][metric] = value
                 elif eid.startswith("iucn:"):
                     iucn[eid[5:]][metric] = value
+                elif eid.startswith("realm:"):
+                    realms[eid[6:]][metric] = value
                 else:
                     feed[eid][metric] = value
-    return sites, countries, iucn, feed
+    return sites, countries, iucn, realms, feed
 
 
 def territories(countries: dict) -> dict:
@@ -357,6 +361,65 @@ def chart_where_area_is(iucn):
     save(p, "where-the-area-is.svg", w, h)
 
 
+def chart_realm_weight(realms, feed):
+    """2.1% of the sites hold 57.4% of the planet. Two stacked shares, one row."""
+    w, h = 940, 560
+    total_n = int(feed["feed:wdpa"]["sites_listed"])
+    total_a = float(feed["feed:wdpa"]["area_listed_total"])
+    order = ["marine", "coastal", "terrestrial"]
+    colour = {"marine": HUE, "coastal": ACCENT, "terrestrial": HUE_SOFT}
+    rows = [(k, int(realms[k]["sites_listed"]), float(realms[k]["area_listed"]))
+            for k in order if k in realms]
+    p = head(w, h, "2.1% of protected areas hold 57.4% of the protected planet",
+             "WDPA labels every site Marine, Coastal or Terrestrial. Counting "
+             "sites and measuring them give opposite answers.",
+             ["Both bars are the same 312,943 sites and the same 75,626,603 km2, "
+              "split by the source's own REALM column.",
+              "Coastal is a real third category and not a rounding of the other "
+              "two: at 225 km2 a coastal site is nearer a terrestrial one."])
+    x0, bar = 210, 640
+    for i, (label, field, total) in enumerate((("by site count", 1, total_n),
+                                               ("by reported area", 2, total_a))):
+        y = 190 + i * 110
+        p.append(T(x0 - 14, y + 26, label, 13, INK, anchor="end", weight="600"))
+        x = x0
+        for key, n, a in rows:
+            v = (n if field == 1 else a)
+            seg = bar * v / total
+            p.append(R(x, y, max(seg - 2, 1), 40, colour[key], rx=4))
+            if seg > 56:
+                p.append(T(x + seg / 2 - 1, y + 25, f"{v/total:.1%}", 12, SURFACE,
+                           anchor="middle", weight="600"))
+            else:
+                # Marine and Coastal are 2.1% and 3.3% of the count bar and their
+                # labels overlapped at every width tried. Stagger them.
+                dy = -8 if key == "marine" else -24
+                p.append(T(x + seg / 2 - 1, y + dy, f"{v/total:.1%}", 11, colour[key],
+                           anchor="middle", weight="600"))
+                p.append(L(x + seg / 2 - 1, y + dy + 4, x + seg / 2 - 1, y,
+                           colour[key], 1))
+            x += seg
+        p.append(T(x0, y + 60,
+                   "   ·   ".join(f"{k.title()} {(n if field==1 else a):,.0f}"
+                                  + ("" if field == 1 else " km\u00b2")
+                                  for k, n, a in rows), 11, MUTED))
+    ly = 190 + 2 * 110 + 40
+    for i, (key, n, a) in enumerate(rows):
+        x = x0 + i * 230
+        p.append(R(x, ly, 14, 14, colour[key], rx=3))
+        p.append(T(x + 22, ly + 12, f"{key.title()}", 12, INK, weight="600"))
+        p.append(T(x + 22, ly + 28, f"mean {a/n:,.0f} km\u00b2", 11, MUTED))
+    mar = next(r for r in rows if r[0] == "marine")
+    ter = next(r for r in rows if r[0] == "terrestrial")
+    p.append(T(56, ly + 74,
+               f"The average marine site is {(mar[2]/mar[1])/(ter[2]/ter[1]):.0f}\u00d7 "
+               f"the average terrestrial one.", 13, INK, weight="600"))
+    p.append(T(56, ly + 96,
+               "A departure counted as one site in 312,943 is not a measurement. "
+               "Which realm it was in decides what was lost.", 12, INK2))
+    save(p, "the-weight-of-a-realm.svg", w, h)
+
+
 def chart_one_row_away(countries, sites):
     """The honest fragility measure: how much of a country is one site."""
     w, h = 940, 700
@@ -443,7 +506,7 @@ def chart_cannot_be_weighed(sites, countries):
 
 
 def main():
-    sites, countries, iucn, feed = load()
+    sites, countries, iucn, realms, feed = load()
     if not sites:
         raise SystemExit("no observations — run `wss derive --parsers parsers.wdpa_site_v1` first")
     print(f"loaded {len(sites):,} sites, {len(countries)} territories, "
@@ -451,6 +514,7 @@ def main():
     chart_only_release(feed)
     chart_count_or_area(countries)
     chart_where_area_is(iucn)
+    chart_realm_weight(realms, feed)
     chart_one_row_away(countries, sites)
     chart_cannot_be_weighed(sites, countries)
 

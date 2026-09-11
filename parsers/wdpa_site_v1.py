@@ -9,11 +9,23 @@ records that each site WAS here, and a row that stops appearing is the only
 evidence anything happened.
 
 AND AREA IS THE POINT, NOT THE COUNT. The 314,766 rows collapse to 312,943
-sites. Marine sites are 10,822 of those (3.5%) and 35,573,290 of 75,626,603 km2
-(47.0%): an average marine site is 3,287 km2 against a terrestrial 133 km2.
-Sweden holds 32,959 sites totalling 264,641 km2; the Cook Islands holds 3
-totalling 2,278,077 km2. Counting departures would rank those backwards, so
-`area_listed` carries the weight on the same row that carries the presence.
+sites. Marine sites are 6,455 of those (2.1%) and 43,437,677 of 75,626,603 km2
+(57.4%): an average marine site is 6,729 km2 against a terrestrial 101 km2, a
+factor of 67. Sweden holds 32,959 sites totalling 264,641 km2; the Cook Islands
+holds 3 totalling 2,278,077 km2. Counting departures would rank those
+backwards, so `area_listed` carries the weight on the same row that carries the
+presence.
+
+REALM IS THE SOURCE'S OWN THREE-VALUE COLUMN, AND IT IS USED VERBATIM. The
+first version of this parser derived a marine/terrestrial binary from
+REP_M_AREA > 0 instead, and it was wrong twice over. It disagreed with WDPA's
+own REALM label on 9,539 sites -- 2,492 sites WDPA calls Marine report no
+marine area and 1,590 it calls Terrestrial report some -- and it collapsed
+COASTAL, which is a real third category of 10,410 sites, into whichever side
+happened to win. Coastal averages 225 km2 against Marine's 6,729 and
+Terrestrial's 101, so it belongs with neither. REP_M_AREA still travels, as
+`marine_area` -- how much of a site is sea is a different question from which
+realm the site is in.
 
 OBSERVED_AT IS THE RELEASE MONTH, NOT THE FETCH TIME. The file names its own
 month -- WDPA_Sep2026_Public_csv.zip -- and that is the date the state was true.
@@ -136,7 +148,8 @@ def parse(body: bytes, ctx: derive.ParseContext):
         if not site:
             continue
         area = _number(row.get("REP_AREA"))
-        marine = _number(row.get("REP_M_AREA")) > 0
+        marine_area = _number(row.get("REP_M_AREA"))
+        realm = (row.get("REALM") or "").strip().lower() or "unknown"
         country = (row.get("PRNT_ISO3") or "").strip() or "unknown"
         iucn = (row.get("IUCN_CAT") or "").strip() or "unknown"
         gov = (row.get("GOV_TYPE") or "").strip() or "unknown"
@@ -154,14 +167,15 @@ def parse(body: bytes, ctx: derive.ParseContext):
         prior = sites.get(site)
         if prior is None:
             sites[site] = {
-                "area": area, "marine": marine, "country": country,
+                "area": area, "marine_area": marine_area, "realm": realm,
+                "country": country,
                 "name": (row.get("NAME") or "").strip(),
                 "status": (row.get("STATUS") or "").strip() or "unknown",
             }
             by_country_n[country] = by_country_n.get(country, 0) + 1
         else:
             prior["area"] += area
-            prior["marine"] = prior["marine"] or marine
+            prior["marine_area"] += marine_area
 
     if rows < MIN_ROWS:
         raise ValueError(
@@ -186,11 +200,12 @@ def parse(body: bytes, ctx: derive.ParseContext):
 
     named = 0
     area_total = 0.0
-    marine_sites = 0
-    marine_area = 0.0
+    marine_area_total = 0.0
     no_area = 0
     country_area: dict[str, float] = {}
     status_n: dict[str, int] = {}
+    realm_n: dict[str, int] = {}
+    realm_area: dict[str, float] = {}
 
     for site, s in sites.items():
         eid = f"pa:{site}"
@@ -202,9 +217,9 @@ def parse(body: bytes, ctx: derive.ParseContext):
         area_total += s["area"]
         if area == 0:
             no_area += 1
-        if s["marine"]:
-            marine_sites += 1
-            marine_area += s["area"]
+        marine_area_total += s["marine_area"]
+        realm_n[s["realm"]] = realm_n.get(s["realm"], 0) + 1
+        realm_area[s["realm"]] = realm_area.get(s["realm"], 0.0) + s["area"]
         country_area[s["country"]] = country_area.get(s["country"], 0.0) + s["area"]
         status_n[s["status"]] = status_n.get(s["status"], 0) + 1
 
@@ -214,8 +229,11 @@ def parse(body: bytes, ctx: derive.ParseContext):
         yield derive.Observation(eid, "area_listed", area, "km2", observed_at=observed)
         yield derive.Observation(eid, "country", s["country"], "text", observed_at=observed)
         yield derive.Observation(eid, "status", s["status"], "state", observed_at=observed)
-        yield derive.Observation(eid, "realm", "marine" if s["marine"] else "terrestrial",
-                                 "state", observed_at=observed)
+        # WDPA's own label, not a binary inferred from a different column.
+        yield derive.Observation(eid, "realm", s["realm"], "state", observed_at=observed)
+        if s["marine_area"] > 0:
+            yield derive.Observation(eid, "marine_area", round(s["marine_area"], 4),
+                                     "km2", observed_at=observed)
         if s["name"] and (s["area"] >= NAMED_AREA_KM2 or s["country"] in fragile
                           or site in keystones):
             named += 1
@@ -226,8 +244,7 @@ def parse(body: bytes, ctx: derive.ParseContext):
     yield derive.Observation(feed, "rows_listed", rows, "count", observed_at=observed)
     yield derive.Observation(feed, "area_listed_total", round(area_total, 2), "km2",
                              observed_at=observed)
-    yield derive.Observation(feed, "marine_sites", marine_sites, "count", observed_at=observed)
-    yield derive.Observation(feed, "marine_area", round(marine_area, 2), "km2",
+    yield derive.Observation(feed, "marine_area_total", round(marine_area_total, 2), "km2",
                              observed_at=observed)
     yield derive.Observation(feed, "territories_listed", len(by_country_n), "count",
                              observed_at=observed)
@@ -271,6 +288,12 @@ def parse(body: bytes, ctx: derive.ParseContext):
         n, a = by_iucn[cat]
         yield derive.Observation(f"iucn:{cat}", "sites_listed", n, "count", observed_at=observed)
         yield derive.Observation(f"iucn:{cat}", "area_listed", round(a, 2), "km2",
+                                 observed_at=observed)
+    for realm in sorted(realm_n):
+        rid = f"realm:{realm}"
+        yield derive.Observation(rid, "sites_listed", realm_n[realm], "count",
+                                 observed_at=observed)
+        yield derive.Observation(rid, "area_listed", round(realm_area[realm], 2), "km2",
                                  observed_at=observed)
     for status in sorted(status_n):
         yield derive.Observation(f"status:{status}", "sites_listed", status_n[status],
