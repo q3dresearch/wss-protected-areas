@@ -109,6 +109,42 @@ five sites or fewer and none holds exactly one.** Every per-territory
 measurement here excludes any code containing a semicolon, and `is_territory`
 travels on each one so a reader cannot repeat it.
 
+## How much a second frame changes the picture
+
+<p align="center">
+  <img src="examples/charts/one-frame-japan.svg" width="900" alt="Japanese protected areas by designation decade from the September 2026 release alone: 972 sites from the 1970s holding 338k square kilometres, 3,014 from the 2010s, 1,270 from the 2020s. Every bar is survivors only.">
+</p>
+
+`STATUS_YR` reaches back to **1902**, so a single release looks like a century
+of history. It is not. **Every bar is survivors only** — sites designated in
+that decade *and still present in September 2026*. A park designated in 1975
+and degazetted in 1998 is in no bar here, and in no other column of the
+release. Nothing in one frame separates a designation record from a
+survivorship curve.
+
+Georgia is the only country with two independently verified frames — July 2024
+and September 2026, both complete, checked record by record — and it shows what
+the second frame is worth:
+
+<p align="center">
+  <img src="examples/charts/two-frames-georgia.svg" width="900" alt="Georgia July 2024 against September 2026: 95 sites becomes 171 and 14,189 square kilometres becomes 23,379. Of 94 sites in both frames, 72 changed reported area but only 45 changed measured area. Kazbegi's reported area fell 46% while its measured area moved 0.1%.">
+</p>
+
+**Of the 94 sites in both frames, 72 changed their reported area and only 45
+changed their measured one.** Kazbegi National Park's `REP_AREA` fell **46%**
+while its `GIS_AREA` moved **0.1%** — 783.1 km² to 782.6. Five more of the
+largest drops are the same story: a reported figure roughly double the polygon,
+corrected to match it.
+
+Read from one frame, Georgia looks like a country that lost half its biggest
+national parks. It didn't. The boundaries never moved; the numbers did. That is
+**P7** — how much of a trend is new sites versus the same sites being
+remeasured — and it is answerable only across frames.
+
+The per-country geometry used for that comparison is a **control**, read once.
+This repository captures the global attribute release and nothing else; the
+screening record is in `webprobes/catalogue.csv`.
+
 ## What the archive cannot fix
 
 <p align="center">

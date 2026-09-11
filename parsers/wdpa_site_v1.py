@@ -168,7 +168,7 @@ def parse(body: bytes, ctx: derive.ParseContext):
         if prior is None:
             sites[site] = {
                 "area": area, "marine_area": marine_area, "realm": realm,
-                "country": country,
+                "country": country, "year": year if year and year != "0" else "",
                 "name": (row.get("NAME") or "").strip(),
                 "status": (row.get("STATUS") or "").strip() or "unknown",
             }
@@ -234,6 +234,13 @@ def parse(body: bytes, ctx: derive.ParseContext):
         if s["marine_area"] > 0:
             yield derive.Observation(eid, "marine_area", round(s["marine_area"], 4),
                                      "km2", observed_at=observed)
+        # When the site was designated. Lost in the REALM rewrite and restored:
+        # without it a site cannot be aged, P10 cannot be answered, and a
+        # decade cohort cannot be followed across releases -- which is the only
+        # way to tell a designation history from a survivorship curve.
+        if s["year"]:
+            yield derive.Observation(eid, "status_year", s["year"], "date",
+                                     observed_at=observed)
         if s["name"] and (s["area"] >= NAMED_AREA_KM2 or s["country"] in fragile
                           or site in keystones):
             named += 1

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="660" viewBox="0 0 940 660">
+<rect x="0.0" y="0.0" width="940.0" height="660.0" fill="#fcfcfb" rx="0"/>
+<text x="56.0" y="48.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="20" fill="#0b0b0b" text-anchor="start" font-weight="600">What a second release does to the same picture</text>
+<text x="56.0" y="74.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#52514e" text-anchor="start" font-weight="normal">Georgia, July 2024 against September 2026 — the only country with two independently verified frames.</text>
+<text x="56.0" y="96.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#898781" text-anchor="start" font-weight="normal">Both archives carry all three shapefile parts and were checked record-by-record. 26 months apart.</text>
+<text x="56.0" y="112.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#898781" text-anchor="start" font-weight="normal">REP_AREA is what the country reports. GIS_AREA is what the polygon actually measures. Watch them separate.</text>
+<text x="266.0" y="192.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#52514e" text-anchor="end" font-weight="normal">sites on the register</text>
+<text x="286.0" y="192.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="15" fill="#52514e" text-anchor="start" font-weight="600">95</text>
+<text x="386.0" y="192.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="middle" font-weight="normal">becomes</text>
+<text x="422.0" y="192.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="15" fill="#0b0b0b" text-anchor="start" font-weight="600">171</text>
+<text x="526.0" y="192.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#898781" text-anchor="start" font-weight="normal">77 arrived, 1 vanished</text>
+<text x="266.0" y="238.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#52514e" text-anchor="end" font-weight="normal">reported area, km²</text>
+<text x="286.0" y="238.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="15" fill="#52514e" text-anchor="start" font-weight="600">14,189</text>
+<text x="386.0" y="238.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="middle" font-weight="normal">becomes</text>
+<text x="422.0" y="238.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="15" fill="#0b0b0b" text-anchor="start" font-weight="600">23,379</text>
+<text x="526.0" y="238.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#898781" text-anchor="start" font-weight="normal">and almost none of the rise is new protection</text>
+<text x="56.0" y="292.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">Of the 94 sites present in both frames, 72 changed their REPORTED area and only 45 changed their MEASURED one.</text>
+<text x="306.0" y="326.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="10.5" fill="#eb6834" text-anchor="end" font-weight="normal">REP_AREA  2024 to 2026</text>
+<text x="526.0" y="326.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="10.5" fill="#2a78d6" text-anchor="end" font-weight="normal">GIS_AREA  2024 to 2026</text>
+<text x="56.0" y="353.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="normal">Kazbegi National Park</text>
+<text x="306.0" y="353.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#eb6834" text-anchor="end" font-weight="normal">1,446.2 to 782.0</text>
+<text x="318.0" y="353.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#eb6834" text-anchor="start" font-weight="600">-46%</text>
+<text x="526.0" y="353.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#2a78d6" text-anchor="end" font-weight="normal">783.1 to 782.6</text>
+<text x="538.0" y="353.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#2a78d6" text-anchor="start" font-weight="600">-0%</text>
+<text x="56.0" y="379.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="normal">Pshav-Khevsureti NP</text>
+<text x="306.0" y="379.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#eb6834" text-anchor="end" font-weight="normal">1,400.4 to 737.7</text>
+<text x="318.0" y="379.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#eb6834" text-anchor="start" font-weight="600">-47%</text>
+<text x="526.0" y="379.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#2a78d6" text-anchor="end" font-weight="normal">759.5 to 738.3</text>
+<text x="538.0" y="379.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="600">-3%</text>
+<text x="56.0" y="405.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="normal">Borjomi Strict Reserve</text>
+<text x="306.0" y="405.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#eb6834" text-anchor="end" font-weight="normal">1,093.0 to 647.6</text>
+<text x="318.0" y="405.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#eb6834" text-anchor="start" font-weight="600">-41%</text>
+<text x="526.0" y="405.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#2a78d6" text-anchor="end" font-weight="normal">648.2 to 647.8</text>
+<text x="538.0" y="405.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#2a78d6" text-anchor="start" font-weight="600">-0%</text>
+<text x="56.0" y="431.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="normal">Kolkheti National Park</text>
+<text x="306.0" y="431.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#eb6834" text-anchor="end" font-weight="normal">808.0 to 450.1</text>
+<text x="318.0" y="431.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#eb6834" text-anchor="start" font-weight="600">-44%</text>
+<text x="526.0" y="431.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#2a78d6" text-anchor="end" font-weight="normal">443.2 to 449.6</text>
+<text x="538.0" y="431.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#2a78d6" text-anchor="start" font-weight="600">+1%</text>
+<text x="56.0" y="457.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="normal">Vashlovani National Park</text>
+<text x="306.0" y="457.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#eb6834" text-anchor="end" font-weight="normal">442.5 to 250.2</text>
+<text x="318.0" y="457.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#eb6834" text-anchor="start" font-weight="600">-43%</text>
+<text x="526.0" y="457.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#2a78d6" text-anchor="end" font-weight="normal">250.5 to 250.3</text>
+<text x="538.0" y="457.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#2a78d6" text-anchor="start" font-weight="600">-0%</text>
+<text x="56.0" y="483.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="normal">Tbilisi National Park</text>
+<text x="306.0" y="483.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#eb6834" text-anchor="end" font-weight="normal">380.0 to 210.3</text>
+<text x="318.0" y="483.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#eb6834" text-anchor="start" font-weight="600">-45%</text>
+<text x="526.0" y="483.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11.5" fill="#2a78d6" text-anchor="end" font-weight="normal">210.7 to 210.6</text>
+<text x="538.0" y="483.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#2a78d6" text-anchor="start" font-weight="600">-0%</text>
+<line x1="56.0" y1="512.0" x2="884.0" y2="512.0" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56.0" y="538.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="15" fill="#0b0b0b" text-anchor="start" font-weight="600">The boundaries did not move. The numbers did.</text>
+<text x="56.0" y="562.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">Kazbegi's reported area fell 46% while its measured area moved 0.1%. Six of the largest drops are the same story: a reported figure that was</text>
+<text x="56.0" y="580.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">roughly double the polygon, corrected to match it. Read from one frame, Georgia looks like a country that lost half its biggest parks.</text>
+<text x="56.0" y="604.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="start" font-weight="600">This is P7, and it is answerable only across frames.</text>
+</svg>

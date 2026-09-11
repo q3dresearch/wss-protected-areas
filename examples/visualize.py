@@ -14,6 +14,8 @@
                             single site
   cannot-be-weighed.svg     the countries whose rows cannot be aged or measured
                             even while they are present
+  one-frame-japan.svg       what a single release claims about a century
+  two-frames-georgia.svg    what a second release does to that claim
 
 Reads the derived table, never the raw archive. Stdlib only, deterministic
 output: the same observations always produce the same bytes.
@@ -420,6 +422,134 @@ def chart_realm_weight(realms, feed):
     save(p, "the-weight-of-a-realm.svg", w, h)
 
 
+# Georgia, Jul 2024 against Sep 2026 -- the only country with two verifiable
+# frames. Read once as a control; this repo does NOT capture per-country
+# geometry. Screening record: webprobes/catalogue.csv, wdpa.geometry.backfill.
+GEO_FRAMES = {
+    "sites": (95, 171), "area": (14189, 23379),
+    "gone": 1, "new": 77, "both": 94,
+    "rep_moved": 72, "gis_moved": 45,
+    # site: (name, REP 2024, REP 2026, GIS 2024, GIS 2026)
+    "examples": [
+        ("Kazbegi National Park", 1446.2, 782.0, 783.1, 782.6),
+        ("Pshav-Khevsureti NP", 1400.4, 737.7, 759.5, 738.3),
+        ("Borjomi Strict Reserve", 1093.0, 647.6, 648.2, 647.8),
+        ("Kolkheti National Park", 808.0, 450.1, 443.2, 449.6),
+        ("Vashlovani National Park", 442.5, 250.2, 250.5, 250.3),
+        ("Tbilisi National Park", 380.0, 210.3, 210.7, 210.6),
+    ],
+}
+
+
+def chart_one_frame_japan(sites):
+    """What a single release claims about a century: a survivorship curve."""
+    w, h = 940, 700
+    jp = [m for m in sites.values() if m.get("country") == "JPN"]
+    dec, area = collections.Counter(), collections.Counter()
+    for m in jp:
+        y = (m.get("status_year") or "")[:4]
+        if y.isdigit() and y != "0":
+            d = (int(y) // 10) * 10
+            dec[d] += 1
+            area[d] += float(m.get("area_listed", 0) or 0)
+    if not dec:
+        return
+    p = head(w, h, "A century of Japanese protected areas, as one release tells it",
+             f"{len(jp):,} sites carrying a designation year, grouped by decade — "
+             f"from the September 2026 release alone.",
+             ["EVERY BAR IS SURVIVORS ONLY. These are sites designated in that "
+              "decade AND still present in September 2026.",
+              "A park designated in 1975 and degazetted in 1998 is in no bar "
+              "here, and in no other column of this release either.",
+              "Read it as a survivorship curve, never as a record of what was "
+              "designated."])
+    decs = sorted(dec)
+    x0, y0, row = 130, 210, 30
+    mx_n, mx_a = max(dec.values()), max(area.values())
+    p.append(T(x0, y0 - 14, "sites still present", 11, MUTED))
+    p.append(T(x0 + 330, y0 - 14, "their reported area", 11, MUTED))
+    for i, d in enumerate(decs):
+        y = y0 + i * row
+        p.append(T(x0 - 14, y + 12, f"{d}s", 12, INK, anchor="end"))
+        p.append(R(x0, y, 240 * dec[d] / mx_n, 15, HUE_SOFT, rx=3))
+        p.append(T(x0 + 240 * dec[d] / mx_n + 7, y + 12, f"{dec[d]:,}", 10.5, MUTED))
+        p.append(R(x0 + 330, y, 240 * area[d] / mx_a, 15, HUE, rx=3))
+        p.append(T(x0 + 330 + 240 * area[d] / mx_a + 7, y + 12,
+                   km2(area[d]), 10.5, MUTED))
+    y = y0 + len(decs) * row + 26
+    p.append(T(56, y, "This chart cannot tell you what Japan protected in 1975.",
+               14, INK, weight="600"))
+    p.append(T(56, y + 22,
+               "It tells you what Japan protected in 1975 that is still on the "
+               "register fifty-one years later. The difference is every site "
+               "that left,", 12, INK2))
+    p.append(T(56, y + 40,
+               "and nothing in a single release distinguishes the two. That is "
+               "what the next chart is for.", 12, INK2))
+    save(p, "one-frame-japan.svg", w, h)
+
+
+def chart_two_frames_georgia():
+    """What a second release does to the claim: 26 months, one country."""
+    w, h = 940, 660
+    g = GEO_FRAMES
+    p = head(w, h, "What a second release does to the same picture",
+             "Georgia, July 2024 against September 2026 — the only country with "
+             "two independently verified frames.",
+             ["Both archives carry all three shapefile parts and were checked "
+              "record-by-record. 26 months apart.",
+              "REP_AREA is what the country reports. GIS_AREA is what the "
+              "polygon actually measures. Watch them separate."])
+    x0, y0 = 56, 180
+    for i, (label, a, b) in enumerate((
+            ("sites on the register", g["sites"][0], g["sites"][1]),
+            ("reported area, km\u00b2", g["area"][0], g["area"][1]))):
+        y = y0 + i * 46
+        p.append(T(x0 + 210, y + 12, label, 12, INK2, anchor="end"))
+        p.append(T(x0 + 230, y + 12, f"{a:,}", 15, INK2, weight="600"))
+        p.append(T(x0 + 330, y + 12, "becomes", 11, MUTED, anchor="middle"))
+        p.append(T(x0 + 366, y + 12, f"{b:,}", 15, INK, weight="600"))
+        p.append(T(x0 + 470, y + 12,
+                   f"{g['new']} arrived, {g['gone']} vanished" if i == 0
+                   else "and almost none of the rise is new protection",
+                   11.5, MUTED))
+    y = y0 + 112
+    p.append(T(x0, y, f"Of the {g['both']} sites present in both frames, "
+                      f"{g['rep_moved']} changed their REPORTED area "
+                      f"and only {g['gis_moved']} changed their MEASURED one.",
+               13, INK, weight="600"))
+    y += 34
+    p.append(T(x0 + 250, y, "REP_AREA  2024 to 2026", 10.5, ACCENT, anchor="end"))
+    p.append(T(x0 + 470, y, "GIS_AREA  2024 to 2026", 10.5, HUE, anchor="end"))
+    y += 16
+    for name, r1, r2, g1, g2 in g["examples"]:
+        p.append(T(x0, y + 11, name, 12, INK))
+        p.append(T(x0 + 250, y + 11, f"{r1:,.1f} to {r2:,.1f}", 11.5, ACCENT, anchor="end"))
+        drop = (r2 - r1) / r1
+        p.append(T(x0 + 262, y + 11, f"{drop:+.0%}", 11, ACCENT, weight="600"))
+        p.append(T(x0 + 470, y + 11, f"{g1:,.1f} to {g2:,.1f}", 11.5, HUE, anchor="end"))
+        gd = (g2 - g1) / g1 if g1 else 0
+        p.append(T(x0 + 482, y + 11, f"{gd:+.0%}", 11,
+                   HUE if abs(gd) < 0.02 else INK2, weight="600"))
+        y += 26
+    y += 14
+    p.append(L(x0, y, w - 56, y, GRID)); y += 26
+    p.append(T(x0, y, "The boundaries did not move. The numbers did.",
+               15, INK, weight="600"))
+    p.append(T(x0, y + 24,
+               "Kazbegi's reported area fell 46% while its measured area moved "
+               "0.1%. Six of the largest drops are the same story: a reported "
+               "figure that was", 12, INK2))
+    p.append(T(x0, y + 42,
+               "roughly double the polygon, corrected to match it. Read from "
+               "one frame, Georgia looks like a country that lost half its "
+               "biggest parks.", 12, INK2))
+    p.append(T(x0, y + 66,
+               "This is P7, and it is answerable only across frames.",
+               12, INK, weight="600"))
+    save(p, "two-frames-georgia.svg", w, h)
+
+
 def chart_one_row_away(countries, sites):
     """The honest fragility measure: how much of a country is one site."""
     w, h = 940, 700
@@ -517,6 +647,8 @@ def main():
     chart_realm_weight(realms, feed)
     chart_one_row_away(countries, sites)
     chart_cannot_be_weighed(sites, countries)
+    chart_one_frame_japan(sites)
+    chart_two_frames_georgia()
 
 
 if __name__ == "__main__":

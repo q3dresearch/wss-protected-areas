@@ -25,7 +25,7 @@ timestamp and a SHA-256 of exactly what came back.
 - **Licence / terms:** Protected Planet terms of use -- free for non-commercial use with attribution, no redistribution of the raw database. See https://www.protectedplanet.net/en/legal. Derived observations published here are aggregate measurements, not a copy of the database.
 - **Personal data:** none
 - **Publisher keeps history:** no — this source destroys its own history
-- **Last stored capture:** 2026-09-11T04:22:03Z · `raw/wdpa.protected.areas/2026/09/20260911T042203Z-567e508ec3bc.bin.gz` · sha256 `567e508ec3bc…`
+- **Last stored capture:** 2026-09-11T08:30:39Z · `raw/wdpa.protected.areas/2026/09/20260911T042203Z-567e508ec3bc.bin.gz` · sha256 `567e508ec3bc…`
 
 ## Reusing this data
 
