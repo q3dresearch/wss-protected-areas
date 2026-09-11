@@ -11,3 +11,9 @@ quarantine/
 __pycache__/
 *.pyc
 .venv/
+
+# Raw captures. This repo's only source declares `storage: object` -- one
+# capture is 23.8 MB of already-compressed zip, so git would carry 286 MB a
+# year. A local `wss capture` still writes here when R2 is unconfigured, and
+# committing that by accident is exactly the mistake this line prevents.
+raw/wdpa.protected.areas/

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="590" viewBox="0 0 940 590">
+<rect x="0.0" y="0.0" width="940.0" height="590.0" fill="#fcfcfb" rx="0"/>
+<text x="56.0" y="48.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="20" fill="#0b0b0b" text-anchor="start" font-weight="600">The smallest IUCN categories hold the most planet</text>
+<text x="56.0" y="74.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#52514e" text-anchor="start" font-weight="normal">Every protected area carries a management category. Sites and area rank it almost in reverse.</text>
+<text x="56.0" y="96.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#898781" text-anchor="start" font-weight="normal">Two bars per category, each scaled to its own maximum — the question is the ORDERING, not a shared magnitude.</text>
+<text x="56.0" y="112.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#898781" text-anchor="start" font-weight="normal">Category VI is sustainable-use protected area: the weakest protection class, and the largest by area.</text>
+<text x="244.0" y="168.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="start" font-weight="normal">sites listed</text>
+<text x="554.0" y="168.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#898781" text-anchor="start" font-weight="normal">reported area</text>
+<text x="230.0" y="194.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">VI  sustainable use</text>
+<rect x="244.0" y="182.0" width="24.2" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="276.2" y="194.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">10,072</text>
+<rect x="554.0" y="182.0" width="250.0" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="812.0" y="194.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">19.4M km²</text>
+<text x="230.0" y="226.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">Not Reported</text>
+<rect x="244.0" y="214.0" width="132.3" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="384.3" y="226.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">55,044</text>
+<rect x="554.0" y="214.0" width="209.9" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="771.9" y="226.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">16.3M km²</text>
+<text x="230.0" y="258.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">Not Applicable</text>
+<rect x="244.0" y="246.0" width="2.1" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="254.1" y="258.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">863</text>
+<rect x="554.0" y="246.0" width="112.6" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="674.6" y="258.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">8.7M km²</text>
+<text x="230.0" y="290.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">V  protected landscape</text>
+<rect x="244.0" y="278.0" width="126.7" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="378.7" y="290.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">52,716</text>
+<rect x="554.0" y="278.0" width="109.4" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="671.4" y="290.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">8.5M km²</text>
+<text x="230.0" y="322.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">IV  habitat management</text>
+<rect x="244.0" y="310.0" width="230.0" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="482.0" y="322.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">95,696</text>
+<rect x="554.0" y="310.0" width="109.0" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="671.0" y="322.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">8.4M km²</text>
+<text x="230.0" y="354.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">II  national park</text>
+<rect x="244.0" y="342.0" width="17.4" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="269.4" y="354.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">7,260</text>
+<rect x="554.0" y="342.0" width="103.9" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="665.9" y="354.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">8.0M km²</text>
+<text x="230.0" y="386.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">Ib  wilderness area</text>
+<rect x="244.0" y="374.0" width="10.4" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="262.4" y="386.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">4,328</text>
+<rect x="554.0" y="374.0" width="27.6" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="589.6" y="386.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">2.1M km²</text>
+<text x="230.0" y="418.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">Ia  strict nature reserve</text>
+<rect x="244.0" y="406.0" width="56.2" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="308.2" y="418.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">23,368</text>
+<rect x="554.0" y="406.0" width="27.5" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="589.5" y="418.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">2.1M km²</text>
+<text x="230.0" y="450.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">Not Assigned</text>
+<rect x="244.0" y="438.0" width="103.4" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="355.4" y="450.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">43,007</text>
+<rect x="554.0" y="438.0" width="20.4" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="582.4" y="450.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">1.6M km²</text>
+<text x="230.0" y="482.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#0b0b0b" text-anchor="end" font-weight="normal">III  natural monument</text>
+<rect x="244.0" y="470.0" width="53.9" height="16.0" fill="#9ec5f4" rx="4"/>
+<text x="305.9" y="482.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">22,412</text>
+<rect x="554.0" y="470.0" width="6.0" height="16.0" fill="#2a78d6" rx="4"/>
+<text x="568.0" y="482.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">467k km²</text>
+<text x="56.0" y="532.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="600">Category VI is 10,072 sites — 9.5× fewer than category IV — and 2.3× its area.</text>
+<text x="56.0" y="552.0" font-family='system-ui, -apple-system, "Segoe UI", sans-serif' font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">Ranking departures by site count would report the loss of the planet's largest protected estate as a rounding error.</text>
+</svg>

@@ -1,0 +1,66 @@
+# The world's protected areas, kept because only this month's exist.
+#
+# WHY THIS PERISHES, and it is not an inference -- it was tested. The download
+# path is literally /current/. On 2026-09-11:
+#
+#   /current/WDPA_Sep2026_Public_csv.zip   200, last-modified 1 Sep 2026
+#   /current/WDPA_Aug2026_Public_csv.zip   404
+#   /current/WDPA_Jul2026_Public_csv.zip   404
+#   /current/WDPA_Jan2026_Public_csv.zip   404
+#   /current/WDPA_Sep2025_Public_csv.zip   404
+#   ...and each of those under its own month prefix, also 404
+#
+# UNEP-WCMC releases monthly and keeps exactly one release online. Earlier
+# releases are "available on request", which is the ask-a-person screen.
+#
+# THERE IS NO EXIT STATUS. The entire STATUS vocabulary of the Sep 2026 release:
+# Designated 304,978 / Established 6,375 / Proposed 1,270 / Inscribed 276 /
+# Adopted 34 / Not Reported 10. No Degazetted, no Removed, no Revoked. A
+# protected area that is downgraded, downsized or degazetted simply stops
+# appearing next month. PRESENCE IS THE OBSERVATION.
+#
+# IT CARRIES ITS OWN DENOMINATOR, AND THE COUNT MISLEADS. REP_AREA is on every
+# row. 314,766 rows collapse to 312,943 sites -- SITE_PID splits a site into
+# parts and the SITE is what gets degazetted. Marine sites are 10,822 of those
+# (3.5%) but 35,573,290 of 75,626,603 km2 (47.0%). Sweden holds 32,959 sites
+# totalling 264,641 km2; the Cook Islands holds 3 totalling 2,278,077 km2.
+# Counting sites would rank those backwards.
+#
+# THE URL NAMES ITS OWN MONTH, so it is a template rather than a literal.
+# {month_end:%b%Y} expands to Sep2026, and lookback 1 falls back to the
+# previous month for the hours on the 1st before the new release is written.
+source_id: wdpa.protected.areas
+status: active
+cadence: monthly
+schema_id: wdpa-site.v1
+
+publisher: UNEP-WCMC and IUCN (Protected Planet / World Database on Protected Areas)
+publisher_tier: first_party
+destroys_own_history: true
+licence: "Protected Planet terms of use -- free for non-commercial use with attribution, no redistribution of the raw database. See https://www.protectedplanet.net/en/legal. Derived observations published here are aggregate measurements, not a copy of the database."
+personal_data: none
+storage: object
+
+notes: >-
+  23.8 MB per capture, of which about 12 MB is the same five-language PDF
+  manual set every month. Object storage rather than git purely on size --
+  286 MB a year would make the repository unclonable within three years, and
+  there is no smaller endpoint: the Protected Planet API needs a key and would
+  cost 312,943 requests to cover the same ground. The server supports
+  revalidation and answers 304, so an unchanged month is cheap. No personal
+  data -- MANG_AUTH names authorities and GOV_TYPE reaches "Individual
+  landowners" (9,528 sites) but no individual is named.
+
+endpoints:
+  - url: "https://d1gam3xoknrgr2.cloudfront.net/current/WDPA_{month_end:%b%Y}_Public_csv.zip"
+    lookback: 1
+    delay_seconds: 2
+    timeout_seconds: 300
+
+gates:
+  expect_status: 200
+  # The September 2026 zip is 23,820,193 bytes. Half of that, so a truncated
+  # download or an error page fails rather than being archived as a real month.
+  min_bytes: 11900000
+  content_type_any: [none]
+  max_shrink_pct: 25
