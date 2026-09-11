@@ -52,6 +52,22 @@ licence: "Protected Planet terms of use -- free for non-commercial use with attr
 personal_data: none
 storage: object
 
+# UNEP-WCMC forbid sub-licensing WDPA data "including within Derivative Works"
+# and permit publishing only where "the Data are not downloadable", so the
+# 1,558,769 per-site rows go to object storage and only the 4,788 cross-entity
+# counts and totals reach git. Every chart in examples/ redraws from these
+# prefixes alone. See LICENSE-DATA.
+publish: aggregates
+aggregate_prefixes:
+  - "feed:"
+  - "country:"
+  - "cohort:"
+  - "iucn:"
+  - "realm:"
+  - "status:"
+  - "governance:"
+  - "designated:"
+
 notes: >-
   23.8 MB per capture, of which about 12 MB is the same five-language PDF
   manual set every month. Object storage rather than git purely on size --

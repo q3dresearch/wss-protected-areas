@@ -211,7 +211,7 @@ it, is in [docs/pilot-study.md](docs/pilot-study.md).
 ## The data you get
 
 **This repository publishes aggregates, not the database.** UNEP-WCMC forbid
-publishing WDPA data in downloadable form, so `tools/split_derived.py` sends
+publishing WDPA data in downloadable form, so the engine's `publish: aggregates` mode sends
 the 1,558,769 per-site rows to private object storage on every derive and keeps
 the **4,788 aggregate rows** — counts and totals by territory, cohort, IUCN
 category, realm and status — in git. Every chart above redraws from those 4,788

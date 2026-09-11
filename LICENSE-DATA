@@ -34,8 +34,8 @@ Two consequences, and neither is avoidable by wording:
 
 ## What this means in practice
 
-This is why `tools/split_derived.py` exists, and it runs on every derive
-before anything commits:
+This is why the registry declares `publish: aggregates`, which the engine
+applies on every derive before anything commits:
 
 | | where it lives |
 | --- | --- |

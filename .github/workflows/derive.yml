@@ -29,7 +29,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  ENGINE_SPEC: "wss[object] @ git+https://github.com/${{ github.repository_owner }}/wss-engine.git@v0.6.46"
+  ENGINE_SPEC: "wss[object] @ git+https://github.com/${{ github.repository_owner }}/wss-engine.git@v0.6.47"
 
 jobs:
   derive:
@@ -56,19 +56,6 @@ jobs:
           R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
           WSS_OBJECT_PREFIX: ${{ secrets.WSS_OBJECT_PREFIX }}
         run: wss derive
-      - name: Split the observation table (licence, not size)
-        env:
-          # Same credentials as the step above. Without them this step refuses
-          # rather than stripping rows with nowhere to put them.
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
-          WSS_OBJECT_PREFIX: ${{ secrets.WSS_OBJECT_PREFIX }}
-        # UNEP-WCMC forbid publishing WDPA data in downloadable form, so the
-        # per-site rows go to object storage and only aggregates reach git.
-        # See LICENSE-DATA. This must run BEFORE anything commits derived/.
-        run: python tools/split_derived.py
       - name: Byte-identical or red (pull requests)
         if: github.event_name == 'pull_request'
         run: git diff --exit-code -- derived
