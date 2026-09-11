@@ -210,6 +210,13 @@ it, is in [docs/pilot-study.md](docs/pilot-study.md).
 
 ## The data you get
 
+**This repository publishes aggregates, not the database.** UNEP-WCMC forbid
+publishing WDPA data in downloadable form, so `tools/split_derived.py` sends
+the 1,558,769 per-site rows to private object storage on every derive and keeps
+the **4,788 aggregate rows** — counts and totals by territory, cohort, IUCN
+category, realm and status — in git. Every chart above redraws from those 4,788
+rows alone, byte-identically. Read [LICENSE-DATA](LICENSE-DATA) first.
+
 `derived/observations/<YYYY-MM>.csv.gz` — one row per entity, per metric, per
 release month:
 
@@ -223,8 +230,9 @@ release cannot invent an October.
 
 | entity | metrics |
 | --- | --- |
-| `pa:<SITE_ID>` | `area_listed` (km², and the presence), `country`, `status`, `realm`, `name` |
-| `country:<ISO3>` | `sites_listed`, `area_listed`, `is_territory`, `top_site_share`, `top_site` |
+| `pa:<SITE_ID>` | `area_listed` (km², and the presence), `country`, `status`, `realm`, `status_year`, `marine_area`, `name` — **object storage only, not in git** |
+| `cohort:<ISO3>:<decade>` | `sites_listed`, `area_listed` — the designation cohorts that make a survivorship curve drawable per country |
+| `country:<ISO3>` | `sites_listed`, `area_listed`, `is_territory`, `top_site_share`, `top_site`, `top_site_name`, `sites_without_area`, `sites_without_year` |
 | `iucn:<cat>` | `sites_listed`, `area_listed` |
 | `feed:wdpa` | `sites_listed`, `rows_listed`, `area_listed_total`, `marine_sites`, `marine_area`, `territories_listed`, `territories_excl_joint`, `joint_designations`, `sites_without_area`, `sites_without_year`, `id_column`, `columns` |
 

@@ -198,6 +198,14 @@ def parse(body: bytes, ctx: derive.ParseContext):
             largest[c] = (s["area"], site)
     keystones = {site for _, site in largest.values()}
 
+    # Per-territory aggregates rich enough to redraw every chart WITHOUT the
+    # per-site rows. UNEP-WCMC forbids publishing WDPA data in downloadable
+    # form, so the public repository carries only these; the per-site table
+    # goes to object storage. See LICENSE-DATA.
+    country_noarea: dict[str, int] = {}
+    country_noyear: dict[str, int] = {}
+    cohort_n: dict[tuple, int] = {}
+    cohort_a: dict[tuple, float] = {}
     named = 0
     area_total = 0.0
     marine_area_total = 0.0
@@ -222,6 +230,15 @@ def parse(body: bytes, ctx: derive.ParseContext):
         realm_area[s["realm"]] = realm_area.get(s["realm"], 0.0) + s["area"]
         country_area[s["country"]] = country_area.get(s["country"], 0.0) + s["area"]
         status_n[s["status"]] = status_n.get(s["status"], 0) + 1
+        c = s["country"]
+        if area == 0:
+            country_noarea[c] = country_noarea.get(c, 0) + 1
+        if not s["year"]:
+            country_noyear[c] = country_noyear.get(c, 0) + 1
+        else:
+            key = (c, (int(s["year"]) // 10) * 10)
+            cohort_n[key] = cohort_n.get(key, 0) + 1
+            cohort_a[key] = cohort_a.get(key, 0.0) + s["area"]
 
         # `area_listed` is both the presence and the weight: the row existing
         # says the site was here, the value says how much of the planet leaves
@@ -291,6 +308,19 @@ def parse(body: bytes, ctx: derive.ParseContext):
                                      "ratio", observed_at=observed)
             yield derive.Observation(cid, "top_site", f"pa:{top_site}", "text",
                                      observed_at=observed)
+            # The NAME too, not just the id: without it the concentration chart
+            # cannot be drawn from aggregates alone, and naming the entity is
+            # the difference between a finding and a count.
+            tn = sites.get(top_site, {}).get("name", "")
+            if tn:
+                yield derive.Observation(cid, "top_site_name", tn, "text",
+                                         observed_at=observed)
+        yield derive.Observation(cid, "sites_without_area",
+                                 country_noarea.get(country, 0), "count",
+                                 observed_at=observed)
+        yield derive.Observation(cid, "sites_without_year",
+                                 country_noyear.get(country, 0), "count",
+                                 observed_at=observed)
     for cat in sorted(by_iucn):
         n, a = by_iucn[cat]
         yield derive.Observation(f"iucn:{cat}", "sites_listed", n, "count", observed_at=observed)
@@ -311,6 +341,15 @@ def parse(body: bytes, ctx: derive.ParseContext):
     for year in sorted(by_year):
         yield derive.Observation(f"designated:{year}", "sites_listed", by_year[year],
                                  "count", observed_at=observed)
+    # Designation cohorts per territory. ~2,000 rows, and they are what lets a
+    # survivorship curve be drawn for any country from the public table.
+    for (country, decade) in sorted(cohort_n):
+        kid = f"cohort:{country}:{decade}"
+        yield derive.Observation(kid, "sites_listed", cohort_n[(country, decade)],
+                                 "count", observed_at=observed)
+        yield derive.Observation(kid, "area_listed",
+                                 round(cohort_a[(country, decade)], 2), "km2",
+                                 observed_at=observed)
 
 
 derive.register("wdpa-site.v1", parse, PARSER_VERSION)

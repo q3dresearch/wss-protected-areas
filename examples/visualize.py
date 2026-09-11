@@ -98,6 +98,7 @@ def load():
     countries = collections.defaultdict(dict)
     iucn = collections.defaultdict(dict)
     realms = collections.defaultdict(dict)
+    cohorts = collections.defaultdict(dict)
     feed = collections.defaultdict(dict)
     for part in sorted((REPO / "derived" / "observations").glob("*.csv*")):
         with _open(part) as fh:
@@ -111,9 +112,11 @@ def load():
                     iucn[eid[5:]][metric] = value
                 elif eid.startswith("realm:"):
                     realms[eid[6:]][metric] = value
+                elif eid.startswith("cohort:"):
+                    cohorts[eid[7:]][metric] = value
                 else:
                     feed[eid][metric] = value
-    return sites, countries, iucn, realms, feed
+    return sites, countries, iucn, realms, cohorts, feed
 
 
 def territories(countries: dict) -> dict:
@@ -442,19 +445,19 @@ GEO_FRAMES = {
 }
 
 
-def chart_one_frame_japan(sites):
+def chart_one_frame_japan(cohorts, countries):
     """What a single release claims about a century: a survivorship curve."""
     w, h = 940, 700
-    jp = [m for m in sites.values() if m.get("country") == "JPN"]
     dec, area = collections.Counter(), collections.Counter()
-    for m in jp:
-        y = (m.get("status_year") or "")[:4]
-        if y.isdigit() and y != "0":
-            d = (int(y) // 10) * 10
-            dec[d] += 1
-            area[d] += float(m.get("area_listed", 0) or 0)
+    for key, m in cohorts.items():
+        iso, _, decade = key.rpartition(":")
+        if iso != "JPN" or not decade.isdigit():
+            continue
+        dec[int(decade)] += int(float(m.get("sites_listed", 0)))
+        area[int(decade)] += float(m.get("area_listed", 0) or 0)
     if not dec:
         return
+    jp = range(sum(dec.values()))
     p = head(w, h, "A century of Japanese protected areas, as one release tells it",
              f"{len(jp):,} sites carrying a designation year, grouped by decade — "
              f"from the September 2026 release alone.",
@@ -647,18 +650,17 @@ def chart_same_boundary():
     save(p, "the-same-boundary.svg", w, h)
 
 
-def chart_one_row_away(countries, sites):
+def chart_one_row_away(countries, sites=None):
     """The honest fragility measure: how much of a country is one site."""
     w, h = 940, 700
     terr = territories(countries)
-    names = {eid: m.get("name", "") for eid, m in sites.items() if m.get("name")}
     rows = []
     for iso, m in terr.items():
         total = float(m.get("area_listed", 0))
         share = float(m.get("top_site_share", 0))
         if total >= 100_000 and share > 0:
             rows.append((iso, int(float(m["sites_listed"])), total, share,
-                         names.get(m.get("top_site", ""), "")))
+                         m.get("top_site_name", "")))
     rows.sort(key=lambda r: -r[3])
     rows = rows[:14]
     p = head(w, h, "Most of a country's protection can be one row",
@@ -689,18 +691,12 @@ def chart_one_row_away(countries, sites):
     save(p, "one-row-away.svg", w, h)
 
 
-def chart_cannot_be_weighed(sites, countries):
+def chart_cannot_be_weighed(countries, sites=None):
     """Present, and still unusable: the rows with no area and no year."""
     w, h = 940, 630
-    real = set(territories(countries))
-    per = collections.defaultdict(lambda: [0, 0, 0])
-    for eid, m in sites.items():
-        iso = m.get("country", "unknown")
-        if iso not in real:
-            continue
-        per[iso][0] += 1
-        if float(m.get("area_listed", 0)) == 0:
-            per[iso][1] += 1
+    per = {iso: [int(float(m.get("sites_listed", 0))),
+                 int(float(m.get("sites_without_area", 0))), 0]
+           for iso, m in territories(countries).items()}
     big = [(iso, v) for iso, v in per.items() if v[0] >= 500]
     rows = sorted(big, key=lambda kv: -kv[1][1] / kv[1][0])[:12]
     p = head(w, h, "Present in the file, and still impossible to weigh",
@@ -733,18 +729,22 @@ def chart_cannot_be_weighed(sites, countries):
 
 
 def main():
-    sites, countries, iucn, realms, feed = load()
-    if not sites:
+    sites, countries, iucn, realms, cohorts, feed = load()
+    if not countries:
         raise SystemExit("no observations — run `wss derive --parsers parsers.wdpa_site_v1` first")
-    print(f"loaded {len(sites):,} sites, {len(countries)} territories, "
-          f"{len(iucn)} IUCN categories")
+    # Per-site rows are absent from the public repository by licence (see
+    # LICENSE-DATA). Every chart below is drawn from the aggregates, so this
+    # runs identically with or without them.
+    print(f"loaded {len(countries)} territories, {len(iucn)} IUCN categories, "
+          f"{len(cohorts)} cohorts"
+          + (f", {len(sites):,} sites" if sites else " (aggregates only)"))
     chart_only_release(feed)
     chart_count_or_area(countries)
     chart_where_area_is(iucn)
     chart_realm_weight(realms, feed)
-    chart_one_row_away(countries, sites)
-    chart_cannot_be_weighed(sites, countries)
-    chart_one_frame_japan(sites)
+    chart_one_row_away(countries)
+    chart_cannot_be_weighed(countries)
+    chart_one_frame_japan(cohorts, countries)
     chart_two_frames_georgia()
     chart_same_boundary()
 

@@ -34,12 +34,18 @@ Two consequences, and neither is avoidable by wording:
 
 ## What this means in practice
 
-| | status |
+This is why `tools/split_derived.py` exists, and it runs on every derive
+before anything commits:
+
+| | where it lives |
 | --- | --- |
-| `examples/charts/*.svg`, `README.md` | **publishable.** Published, not downloadable, attributed. This is what the terms explicitly allow |
-| aggregate rows — `feed:`, `country:`, `realm:`, `iucn:`, `status:` | ~1,300 rows of counts and totals. Defensible as statistics about the data rather than the data |
-| `derived/observations/*.csv.gz` as a whole | **not publishable** while it contains the 1,558,769 `pa:` rows |
-| `raw/` | never in git regardless; object storage only |
+| `examples/charts/*.svg`, `README.md` | **git, public.** Published, not downloadable, attributed — what the terms explicitly allow |
+| aggregate rows — `feed:`, `country:`, `cohort:`, `iucn:`, `realm:`, `status:`, `governance:`, `designated:` | **git, public.** 4,788 rows of counts and totals: statistics *about* the data. Every chart in `examples/` redraws from these alone, byte-identically |
+| the 1,558,769 `pa:` per-site rows | **object storage, private.** The archive proper |
+| `raw/` | object storage, private. Never in git regardless |
+
+The split is not a size optimisation — the whole partition gzips to 7.5 MB. It
+is the condition on which this repository can be public at all.
 
 ## Code
 
@@ -51,9 +57,13 @@ Code in this repository is MIT ([LICENSE](LICENSE)) and unaffected.
 > Areas (WDPA)*, September 2026, Cambridge, UK: UNEP-WCMC and IUCN.
 > Available at: www.protectedplanet.net
 
-## If you want this repository public
+## Getting the per-site rows
 
-The clean route is a written permission request to
-**protectedareas@unep-wcmc.org**, which is the address UNEP-WCMC gives for
-exactly this. Until that exists, the repository stays private, or is published
-with the per-site rows withheld.
+They are not published, and this repository cannot license them to you. Ask
+UNEP-WCMC directly — **protectedareas@unep-wcmc.org** — and download the same
+release from protectedplanet.net, which is where these came from. Every capture
+is named in `SOURCES.md` and the manifest records the byte count and SHA-256 of
+each one, so you can verify you have the same file this archive holds.
+
+If you want to publish a derived work of your own, the written-permission route
+is the same address.
