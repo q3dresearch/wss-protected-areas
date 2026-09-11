@@ -553,7 +553,11 @@ def chart_two_frames_georgia():
 
 # Georgia-wide, measured across the two verified frames.
 GEO_VERTICES = {"before": 265145, "after": 70295, "sites": 94,
-                "same_bbox": 83, "fewer_points": 92}
+                "same_bbox": 83, "fewer_points": 92,
+                # 2026 vertices that exist EXACTLY in the 2024 outline, to 6dp
+                "kept_exactly": 3289, "of_2026": 3302,
+                # REP_AREA / GIS_AREA, the two independent fields
+                "ratio_2024": (1.805, 76, 82), "ratio_2026": (1.000, 148, 153)}
 
 
 def chart_same_boundary():
@@ -563,17 +567,18 @@ def chart_same_boundary():
     if not path.is_file():
         return
     frames = _json.loads(path.read_text())
-    w, h = 940, 720
+    w, h = 940, 830
     a, b = frames["Jul2024"], frames["Sep2026"]
     pts_a = sum(len(r) for r in a["rings"])
     pts_b = sum(len(r) for r in b["rings"])
     p = head(w, h, "The same park, in both releases, drawn on top of each other",
              "Kazbegi National Park. Its reported area fell 46% between these "
              "two frames; this is what actually changed.",
-             ["July 2024 in orange underneath, September 2026 in blue on top. "
-              "If the boundary had moved, orange would show at the edges.",
-              "It does not. What changed is the number of vertices describing "
-              "the same outline."])
+             ["REP_AREA is REPORTED by the country. GIS_AREA is COMPUTED from "
+              "the polygon. They are independent fields, so one can move "
+              "without the other.",
+              "July 2024 in orange underneath, September 2026 in blue on top. "
+              "If the boundary had moved, orange would show at the edges."])
     xs = [x for r in a["rings"] + b["rings"] for x, _ in r]
     ys = [y for r in a["rings"] + b["rings"] for _, y in r]
     x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
@@ -604,6 +609,10 @@ def chart_same_boundary():
         y += 50
     p.append(T(56, y + 4, "bounding box", 10.5, MUTED))
     p.append(T(56, y + 22, "identical to 5 decimals", 12, INK, weight="600"))
+    ke, of = GEO_VERTICES["kept_exactly"], GEO_VERTICES["of_2026"]
+    p.append(T(56, y + 48, "2026 vertices found exactly", 10.5, MUTED))
+    p.append(T(56, y + 64, "in the 2024 outline", 10.5, MUTED))
+    p.append(T(56, y + 84, f"{ke:,} of {of:,}   ({ke/of:.1%})", 12, INK, weight="600"))
 
     g = GEO_VERTICES
     yy = T_ + H_ + 56
@@ -620,10 +629,21 @@ def chart_same_boundary():
     p.append(T(56, yy + 60,
                "reported areas corrected to match. No protection was gained or lost.",
                12, INK2))
-    p.append(T(56, yy + 88,
-               "A single release shows none of this, and a naive comparison of "
-               "REP_AREA alone would report it as mass downsizing.",
-               12, INK, weight="600"))
+    r24, n24, d24 = GEO_VERTICES["ratio_2024"]
+    r26, n26, d26 = GEO_VERTICES["ratio_2026"]
+    p.append(T(56, yy + 88, "So was the 2024 figure an error? Yes, and a systematic one.",
+               13, INK, weight="600"))
+    p.append(T(56, yy + 110,
+               f"In July 2024 the reported area was {r24:.2f}x the measured one at "
+               f"the median, and {n24} of {d24} Georgian sites ({n24/d24:.0%}) sat in "
+               f"a tight 1.6-2.0 band.", 12, INK2))
+    p.append(T(56, yy + 128,
+               f"By September 2026 the median ratio is {r26:.3f} and {n26} of {d26} "
+               f"({n26/d26:.0%}) agree within 2%. A near-constant factor across "
+               f"almost every site in one country is", 12, INK2))
+    p.append(T(56, yy + 146,
+               "one bad national submission, corrected -- not 82 separate mistakes, "
+               "and not a change in what is protected.", 12, INK2))
     save(p, "the-same-boundary.svg", w, h)
 
 

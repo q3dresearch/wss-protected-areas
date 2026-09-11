@@ -149,8 +149,21 @@ And the geometry settles it outright:
 
 Both frames of Kazbegi, on top of each other. If the boundary had moved, the
 July 2024 fill would show at the edges. It does not — the bounding box is
-**identical to five decimal places**. What changed is the vertex count:
-**7,752 points became 3,302**.
+**identical to five decimal places**, and **3,289 of the 3,302 September 2026
+vertices (99.6%) exist *exactly* in the July 2024 outline** to six decimals.
+That is vertex-thinning, not a re-survey: 7,752 points became 3,302.
+
+**`REP_AREA` and `GIS_AREA` are independent fields** — one is reported by the
+country, the other computed from the polygon — so one can move while the other
+does not. That is why a 46% fall in the reported area leaves the drawing
+untouched.
+
+**And the 2024 figure was an error, systematically.** In July 2024 the reported
+area was **1.80× the measured one at the median**, with **76 of 82 Georgian
+sites (93%) in a tight 1.6–2.0 band**. By September 2026 the median ratio is
+**1.000** and 148 of 153 (97%) agree within 2%. A near-constant factor across
+almost every site in one country is one bad national submission, corrected — not
+82 separate mistakes, and not a change in what is protected.
 
 Across all 94 Georgian sites in both frames the polygons went from **265,145
 vertices to 70,295, a drop of 73%**, while **83 of 94 (88%) kept an identical
