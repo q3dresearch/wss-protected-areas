@@ -1,0 +1,373 @@
+{
+  "generated_at": "2026-09-15T13:15:05Z",
+  "note": "Inferred from the derived rows by `wss schema`, not hand-written. Regenerate after any derive.",
+  "sources": {
+    "wdpa.protected.areas": {
+      "source_id": "wdpa.protected.areas",
+      "schema_id": "wdpa-site.v1",
+      "cadence": "quarterly",
+      "licence": "Protected Planet terms of use -- free for non-commercial use with attribution, no redistribution of the raw database. See https://www.protectedplanet.net/en/legal. Derived observations published here are aggregate measurements, not a copy of the database.",
+      "personal_data": "none",
+      "storage": "object",
+      "publisher": "UNEP-WCMC and IUCN (Protected Planet / World Database on Protected Areas)",
+      "publisher_tier": "first_party",
+      "endpoints": 1
+    }
+  },
+  "observations": {
+    "rows": 4788,
+    "columns": [
+      "series_id",
+      "entity_id",
+      "observed_at",
+      "captured_at",
+      "metric",
+      "value",
+      "unit",
+      "source_id",
+      "raw_ref",
+      "parser_version"
+    ],
+    "partitions": [
+      "2026-09.csv.gz"
+    ],
+    "series": {
+      "wdpa.protected.areas": {
+        "rows": 4788,
+        "entities": 1821,
+        "entity_id_samples": [
+          "cohort:ABNJ:2010",
+          "cohort:AFG:2000",
+          "cohort:AFG:2010"
+        ],
+        "metrics": [
+          "area_listed",
+          "area_listed_total",
+          "columns",
+          "fragile_territories",
+          "id_column",
+          "is_territory",
+          "joint_designations",
+          "marine_area_total",
+          "rows_listed",
+          "sites_listed",
+          "sites_named",
+          "sites_without_area",
+          "sites_without_year",
+          "territories_excl_joint",
+          "territories_listed",
+          "top_site",
+          "top_site_name",
+          "top_site_share"
+        ]
+      }
+    },
+    "parser_versions": [
+      "1"
+    ]
+  },
+  "metrics": {
+    "area_listed": {
+      "rows": 1635,
+      "unit": "km2",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1635,
+      "distinct_values": 1570,
+      "empty": 0,
+      "min": "0.0",
+      "max": "43437677.13",
+      "samples": [
+        "0.0",
+        "0.01",
+        "0.02"
+      ]
+    },
+    "area_listed_total": {
+      "rows": 1,
+      "unit": "km2",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "75626602.57",
+      "max": "75626602.57",
+      "samples": [
+        "75626602.57"
+      ]
+    },
+    "columns": {
+      "rows": 1,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "34",
+      "max": "34",
+      "samples": [
+        "34"
+      ]
+    },
+    "fragile_territories": {
+      "rows": 1,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "19",
+      "max": "19",
+      "samples": [
+        "19"
+      ]
+    },
+    "id_column": {
+      "rows": 1,
+      "unit": "text",
+      "type": "text",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "samples": [
+        "SITE_ID"
+      ]
+    },
+    "is_territory": {
+      "rows": 222,
+      "unit": "state",
+      "type": "text",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 222,
+      "distinct_values": 2,
+      "empty": 0,
+      "samples": [
+        "no",
+        "yes"
+      ]
+    },
+    "joint_designations": {
+      "rows": 1,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "25",
+      "max": "25",
+      "samples": [
+        "25"
+      ]
+    },
+    "marine_area_total": {
+      "rows": 1,
+      "unit": "km2",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "33050853.66",
+      "max": "33050853.66",
+      "samples": [
+        "33050853.66"
+      ]
+    },
+    "rows_listed": {
+      "rows": 1,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "314766",
+      "max": "314766",
+      "samples": [
+        "314766"
+      ]
+    },
+    "sites_listed": {
+      "rows": 1821,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1821,
+      "distinct_values": 495,
+      "empty": 0,
+      "min": "1",
+      "max": "312943",
+      "samples": [
+        "1",
+        "10",
+        "100"
+      ]
+    },
+    "sites_named": {
+      "rows": 1,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "17685",
+      "max": "17685",
+      "samples": [
+        "17685"
+      ]
+    },
+    "sites_without_area": {
+      "rows": 223,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 223,
+      "distinct_values": 62,
+      "empty": 0,
+      "min": "0",
+      "max": "23656",
+      "samples": [
+        "0",
+        "1",
+        "10"
+      ]
+    },
+    "sites_without_year": {
+      "rows": 223,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 223,
+      "distinct_values": 54,
+      "empty": 0,
+      "min": "0",
+      "max": "34459",
+      "samples": [
+        "0",
+        "1",
+        "10"
+      ]
+    },
+    "territories_excl_joint": {
+      "rows": 1,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "196",
+      "max": "196",
+      "samples": [
+        "196"
+      ]
+    },
+    "territories_listed": {
+      "rows": 1,
+      "unit": "count",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 1,
+      "distinct_values": 1,
+      "empty": 0,
+      "min": "222",
+      "max": "222",
+      "samples": [
+        "222"
+      ]
+    },
+    "top_site": {
+      "rows": 218,
+      "unit": "text",
+      "type": "text",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 218,
+      "distinct_values": 218,
+      "empty": 0,
+      "samples": [
+        "pa:10091",
+        "pa:101835",
+        "pa:10708"
+      ]
+    },
+    "top_site_name": {
+      "rows": 218,
+      "unit": "text",
+      "type": "text",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 218,
+      "distinct_values": 218,
+      "empty": 0,
+      "samples": [
+        "\"W\" Region (Benin)",
+        "Aire protégée des îles Phoenix",
+        "Akagera"
+      ]
+    },
+    "top_site_share": {
+      "rows": 218,
+      "unit": "ratio",
+      "type": "number",
+      "series": [
+        "wdpa.protected.areas"
+      ],
+      "entities": 218,
+      "distinct_values": 195,
+      "empty": 0,
+      "min": "0.0147",
+      "max": "1.0",
+      "samples": [
+        "0.0147",
+        "0.0211",
+        "0.0273"
+      ]
+    }
+  },
+  "raw": {
+    "files": 0,
+    "bytes_on_disk": 0,
+    "capture_dates": 1,
+    "first_capture": "2026-09-11T04:22:03Z",
+    "last_capture": "2026-09-11T08:30:39Z"
+  }
+}
