@@ -8,7 +8,8 @@ abstract: >-
 authors:
   - name: "q3dresearch"
     website: "https://github.com/q3dresearch"
-license: CC-BY-4.0
+# No `license:` field: UNEP-WCMC's terms forbid sub-licensing, and LICENSE-DATA says so; asserting CC-BY-4.0 here contradicted that file
+# The CODE is MIT (see LICENSE); this file cites the DATASET.
 keywords:
   - git-scraping
   - open-data
