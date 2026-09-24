@@ -295,6 +295,66 @@ source declares `storage: object`.
 4. Run `capture-quarterly` once by hand (Actions → capture-quarterly → Run
    workflow), confirm the bot's data commit lands, then let the cron take over.
 
+## Figures
+
+Built by the scripts in [`examples/`](examples/), from the captures in this
+repository. Each caption is the figure's own title — nothing is restated here
+that the figure does not already say.
+
+**Present in the file, and still impossible to weigh**
+
+![Present in the file, and still impossible to weigh](examples/charts/cannot-be-weighed.svg)
+
+Share of each territory's sites reporting no area at all. Territories with at least 500 sites.
+
+**Counting protected areas and measuring them are different questions**
+
+![Counting protected areas and measuring them are different questions](examples/charts/count-or-area.svg)
+
+Each bubble is one of 196 territories: how many sites it lists, against how much of the planet they cover.
+
+**A century of Japanese protected areas, as one release tells it**
+
+![A century of Japanese protected areas, as one release tells it](examples/charts/one-frame-japan.svg)
+
+6,952 sites carrying a designation year, grouped by decade — from the September 2026 release alone.
+
+**Most of a country's protection can be one row**
+
+![Most of a country's protection can be one row](examples/charts/one-row-away.svg)
+
+Share of each territory's reported protected area held by its single largest site. Territories covering 100,000 km² or more.
+
+**Nine months of the World Database on Protected Areas, asked for**
+
+![Nine months of the World Database on Protected Areas, asked for](examples/charts/the-only-release.svg)
+
+Every release lives at the same /current/ path. Only one of them is still there.
+
+**The same park, in both releases, drawn on top of each other**
+
+![The same park, in both releases, drawn on top of each other](examples/charts/the-same-boundary.svg)
+
+Kazbegi National Park. Its reported area fell 46% between these two frames; this is what actually changed.
+
+**2.1% of protected areas hold 57.4% of the protected planet**
+
+![2.1% of protected areas hold 57.4% of the protected planet](examples/charts/the-weight-of-a-realm.svg)
+
+WDPA labels every site Marine, Coastal or Terrestrial. Counting sites and measuring them give opposite answers.
+
+**What a second release does to the same picture**
+
+![What a second release does to the same picture](examples/charts/two-frames-georgia.svg)
+
+Georgia, July 2024 against September 2026 — the only country with two independently verified frames.
+
+**The smallest IUCN categories hold the most planet**
+
+![The smallest IUCN categories hold the most planet](examples/charts/where-the-area-is.svg)
+
+Every protected area carries a management category. Sites and area rank it almost in reverse.
+
 ## Licences
 
 Code is MIT ([LICENSE](LICENSE)). **The derived observations are NOT CC-BY and
