@@ -295,6 +295,26 @@ source declares `storage: object`.
 4. Run `capture-quarterly` once by hand (Actions → capture-quarterly → Run
    workflow), confirm the bot's data commit lands, then let the cron take over.
 
+## Questions this exists to answer
+
+![All 9 questions here are answered or on a clock.](examples/charts/maturity.svg)
+
+**8 of these 9 are answered from captures already held.** 1 become answerable only as the series lengthens — the plate shows when. Every other one is on the clock, so the plate is a schedule rather than a wish list.
+
+
+| # | question | status |
+| --- | --- | --- |
+| Q1 | Can an earlier release still be downloaded? | **answered — no.** Every release lives at the same `/current/` path; only this month's returns 200 → [the only release](examples/charts/the-only-release.svg) |
+| Q2 | Is counting protected areas the same as measuring them? | **answered — no**, and the two rank differently → [count or area](examples/charts/count-or-area.svg) |
+| Q3 | How concentrated is the protected planet? | **answered** — 2.1% of areas hold 57.4% of it → [the weight of a realm](examples/charts/the-weight-of-a-realm.svg) |
+| Q4 | Which IUCN categories hold the most area? | **answered** — the smallest ones → [where the area is](examples/charts/where-the-area-is.svg) |
+| Q5 | How much of a country's protection can rest on one row? | **answered** — most of it → [one row away](examples/charts/one-row-away.svg) |
+| Q6 | Can every area in the file be weighed? | **answered — no.** Some are present and still impossible to weigh → [cannot be weighed](examples/charts/cannot-be-weighed.svg) |
+| Q7 | What does a second release do to the same picture? | **answered** — the boundaries did not move, the numbers did → [two frames, Georgia](examples/charts/two-frames-georgia.svg) and [the same boundary](examples/charts/the-same-boundary.svg) |
+| Q8 | What does one release say about a century of protection? | **answered**, for Japan → [one frame, Japan](examples/charts/one-frame-japan.svg) |
+| Q9 | Which areas are added, moved or dropped between releases? | needs 2+ captures. **The reason for capturing** — only the current month exists, so a change between releases is unobservable anywhere else |
+
+
 ## Figures
 
 Built by the scripts in [`examples/`](examples/), from the captures in this
