@@ -1,0 +1,2 @@
+source_id,url,fetched_at,http_status,content_type,content_length,content_sha256,etag,last_modified,outcome,raw_ref,reason,warnings
+wdpa.protected.areas,https://d1gam3xoknrgr2.cloudfront.net/current/WDPA_{month_end:%b%Y}_Public_csv.zip,2026-10-05T00:56:21Z,200,,29595446,d2c6d7bf19b0bf9ebd36eba35e374eac61a5d72941946eb6f5d535f04bd5d132,"""e354f419bda60388aa1a5a7990a54ac6-6""","Thu, 01 Oct 2026 14:46:35 GMT",changed,raw/wdpa.protected.areas/2026/10/20261005T005621Z-d2c6d7bf19b0.bin.gz,,resolved_to=WDPA_Oct2026_Public_csv.zip
